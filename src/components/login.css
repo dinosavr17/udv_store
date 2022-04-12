@@ -1,0 +1,98 @@
+
+
+.login_section {
+    display: grid;
+    grid-template-areas: "register_logo"
+            "login_title"
+            "login_card";
+    justify-content: center;
+}
+.register_logo {
+    grid-area: register_logo;
+    display: grid;
+    justify-self: center;
+    margin: 1em;
+}
+.registerLogo {
+    width: 300px;
+    max-width: 100%;
+}
+.login_title {
+    grid-area: login_title;
+    justify-self: center;
+    margin: 1em;
+}
+
+.login_form {
+    display: grid;
+    flex-direction: column;
+    padding-bottom: 1rem;
+}
+.login_btn {
+    padding: 0.5em;
+    margin: 1em;
+    background-color: #00d29d;
+    border-radius: 5px;
+
+}
+.login_input, textarea {
+    border-right-color: transparent;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-radius: 0px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    padding: 0.25rem;
+    margin: 0.5em;
+}
+
+
+label {
+    margin-top: 1rem;
+}
+
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+}
+
+.instructions > svg {
+    margin-right: 0.25rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.hide {
+    display: none;
+}
+
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+
+.errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.line {
+    display: inline-block;
+}

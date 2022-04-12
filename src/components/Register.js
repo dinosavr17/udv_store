@@ -5,8 +5,8 @@ import axios from "../api/axios";
 import './register.css';
 import registerLogo from '../images/logotype.svg'
 
-const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const USER_REGEX = /^([\w-\.]+@(?=ussc.ru)([\w-]+\.)+[\w-]{2,4})?$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
 const REGISTER_URL = '/register';
 
 const Register = () => {
@@ -121,9 +121,8 @@ const Register = () => {
                         />
                         <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            От 4 до 24 символов<br />
-                            Должен начинаться с буквы<br />
-                            Буквы, цифры, нижнее подчеркивание, дефис разрешены.
+                            Корпоративный email адрес.<br/>
+                            Должен содержать почтовый домен @ussc.ru
                         </p>
 
 
@@ -146,8 +145,7 @@ const Register = () => {
                         <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             От 8 to 24 символов.<br />
-                           Должен содержать прописные и строчные буквы и специальный символ<br />
-                            Разрешенные специальные символы: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+                           Должен содержать прописные и строчные буквы <br />
                         </p>
 
 

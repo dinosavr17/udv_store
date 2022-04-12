@@ -7,10 +7,12 @@ import {Orders} from "./pages/Orders";
 import {UserInfo} from "./pages/UserInfo";
 import {SidebarData} from "./components/SidebarData";
 import {SignUp} from "./pages/SignUp";
+import {SignIn} from "./pages/SignIn";
 function App() {
   return (
       <BrowserRouter>
           <Route path={'/sign-up'} component={SignUp}></Route>
+          <Route path={'/sign-in'} component={SignIn}></Route>
           <Navbar/>
        <Switch>
            <Route path={'/'} exact component={Home}></Route>
