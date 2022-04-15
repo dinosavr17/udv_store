@@ -13,11 +13,11 @@ const Register = () => {
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useState('');
+    const [email, setEmail] = useState('');
     const [validName, setValidName] = useState(false);
     const [userFocus, setUserFocus] = useState(false);
 
-    const [pwd, setPwd] = useState('');
+    const [password, setPassword] = useState('');
     const [validPwd, setValidPwd] = useState(false);
     const [pwdFocus, setPwdFocus] = useState(false);
 
@@ -33,32 +33,32 @@ const Register = () => {
     }, [])
 
     useEffect(() => {
-        setValidName(USER_REGEX.test(user));
-    }, [user])
+        setValidName(USER_REGEX.test(email));
+    }, [email])
 
     useEffect(() => {
-        setValidPwd(PWD_REGEX.test(pwd));
-        setValidMatch(pwd === matchPwd);
-    }, [pwd, matchPwd])
+        setValidPwd(PWD_REGEX.test(password));
+        setValidMatch(password === matchPwd);
+    }, [password, matchPwd])
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd, matchPwd])
+    }, [email, password, matchPwd])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // if button enabled with JS hack
-        const v1 = USER_REGEX.test(user);
-        const v2 = PWD_REGEX.test(pwd);
+        const v1 = USER_REGEX.test(email);
+        const v2 = PWD_REGEX.test(password);
         if (!v1 || !v2) {
             setErrMsg("Invalid Entry");
             return;
         }
         try {
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ user, pwd }),
+                JSON.stringify({ email, password }),
                 {
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                     withCredentials: true
                 }
             );
@@ -68,8 +68,8 @@ const Register = () => {
             setSuccess(true);
             //clear state and controlled inputs
             //need value attrib on inputs for this
-            setUser('');
-            setPwd('');
+            setEmail('');
+            setPassword('');
             setMatchPwd('');
         } catch (err) {
             if (!err?.response) {
@@ -103,7 +103,7 @@ const Register = () => {
                     <form className="register_form" onSubmit={handleSubmit}>
                         <label htmlFor="username">
                             <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"}/>
-                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
+                            <FontAwesomeIcon icon={faTimes} className={validName || !email ? "hide" : "invalid"} />
                         </label>
                         <input className="register_input"
                             type="text"
@@ -111,15 +111,15 @@ const Register = () => {
                                placeholder="Корпоративная почта"
                             ref={userRef}
                             autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
                             required
                             aria-invalid={validName ? "false" : "true"}
                             aria-describedby="uidnote"
                             onFocus={() => setUserFocus(true)}
                             onBlur={() => setUserFocus(false)}
                         />
-                        <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
+                        <p id="uidnote" className={userFocus && email && !validName ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Корпоративный email адрес.<br/>
                             Должен содержать почтовый домен @ussc.ru
@@ -128,14 +128,14 @@ const Register = () => {
 
                         <label htmlFor="password">
                             <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
+                            <FontAwesomeIcon icon={faTimes} className={validPwd || !password ? "hide" : "invalid"} />
                         </label>
                         <input className="register_input"
                             type="password"
                             id="password"
                                placeholder="Пароль"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
                             required
                             aria-invalid={validPwd ? "false" : "true"}
                             aria-describedby="pwdnote"
