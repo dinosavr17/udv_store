@@ -3,15 +3,15 @@ import AuthContext from "../context/AuthProvider";
 import './login.css';
 import axios from "../api/axios";
 import registerLogo from '../images/logotype.svg'
-const LOGIN_URL = '/auth';
+const LOGIN_URL = 'http://localhost:8080/auth';
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useState('');
-    const [pwd, setPwd] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -21,16 +21,16 @@ const Login = () => {
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd])
+    }, [email, password])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
+                JSON.stringify({ email, password }),
                 {
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:3000' },
                     withCredentials: true
                 }
             );
@@ -38,9 +38,9 @@ const Login = () => {
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
-            setUser('');
-            setPwd('');
+            setAuth({ email, password, roles, accessToken });
+            setEmail('');
+            setPassword('');
             setSuccess(true);
         } catch (err) {
             if (!err?.response) {
@@ -81,8 +81,8 @@ const Login = () => {
                             id="username"
                             ref={userRef}
                             autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
                             required
                         />
 
@@ -90,8 +90,8 @@ const Login = () => {
                                placeholder="Пароль"
                             type="password"
                             id="password"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
                             required
                         />
                         <button className="login_btn">Войти</button>
