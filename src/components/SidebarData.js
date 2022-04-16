@@ -1,6 +1,8 @@
 import React from 'react';
 import {faArrowRightFromBracket, faBagShopping, faCartShopping} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Badge from '@mui/material/Badge';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 export const SidebarData = [
     {
         title: 'Account',
@@ -17,7 +19,9 @@ export const SidebarData = [
     {
         title: 'Cart',
         path: '/cart',
-        icon: <FontAwesomeIcon icon={faCartShopping} />,
+        icon:  <Badge badgeContent={4} color="secondary">
+            <ShoppingCartOutlinedIcon />
+        </Badge>,
         cName: 'nav-text'
     },
     {

@@ -10,13 +10,18 @@ import ReactDOM from 'react-dom';
 import Link from 'react-router-dom';
 import {SidebarData} from "./SidebarData";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { IconContext } from 'react-icons';
+import Badge from '@mui/material/Badge';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import './navbar.css';
+
+
+
+
 
 const Navbar = () => {
     const [sidebar, setSidebar] = useState(false);
@@ -74,8 +79,9 @@ const Navbar = () => {
                         </div>
                     </NavLink>
                     <NavLink to='/cart' activeStyle>
-                        <div><FontAwesomeIcon icon={faCartShopping} />
-                        </div>
+                        <Badge component="badge" id='cart_badge' badgeContent={4} color='secondary'>
+                            <ShoppingCartOutlinedIcon />
+                        </Badge>
                         <div>
                             Cart
                         </div>
