@@ -1,0 +1,47 @@
+@keyframes sheen {
+    0% {
+        transform: skewY(-45deg) translateX(0);
+    }
+    100% {
+        transform: skewY(-45deg) translateX(12.5em);
+    }
+}
+.custom-btn {
+    max-width: 100%;
+    margin-bottom: 0.5em;
+    padding: 0.5em 2.5em;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: #171616;
+    background-color: #00d29d;
+    border: 2px solid #00d29d;
+    font-size: 12px;
+    display: inline-block;
+    border-radius: 14px;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+.custom-btn:before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -4.5em;
+    transform: skewX(-45deg) translateX(0);
+    transition: none;
+}
+.custom-btn:hover {
+    background-color: #6d1b7b;
+    color: #fff;
+    border-color: #6d1b7b ;
+    border-bottom: 2px solid #6d1b7b;
+}
+.custom-btn:hover:before {
+    transform: skewX(-45deg) translateX(13.5em);
+    transition: all 0.5s ease-in-out;
+}

@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'Hero-Light';
+    src: url(/src/fonts/Font/Hero-Light.ttf);
+}
+.neon_tittle {
+    font-size: calc(10px + 8vh);
+    line-height: calc(10px + 10vh);
+    /*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+        0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+      color: #fccaff; */
+    text-shadow: 0 0 5px #8fb2f4, 0 0 15px #8fb2f4, 0 0 20px #8fb2f4, 0 0 40px #8fb2f4, 0 0 60px #0000ff, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #84fab0;
+    font-family: "Hero-Light", cursive;
+    text-align: center;
+    animation: blink 12s infinite;
+    -webkit-animation: blink 12s infinite;
+}
+
+.neon_frame {
+    padding: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    background: #222 repeating-linear-gradient(
+            to bottom,
+            transparent 7px,
+            rgba(0, 0, 0, 0.8) 9px,
+            rgba(0, 0, 0, 0.8) 13px,
+            transparent 13px
+    );
+}
+
+@-webkit-keyframes blink {
+    20%,
+    24%,
+    55% {
+        color: #111;
+        text-shadow: none;
+    }
+
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+        /*     color: #fccaff;
+            text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+              0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+        text-shadow: 0 0 5px #8fb2f4, 0 0 15px #8fb2f4, 0 0 20px #8fb2f4, 0 0 40px #8fb2f4, 0 0 60px #ff0000, 0 0 10px #0000ff, 0 0 98px #0000ff;
+        color: #84fab0;
+    }
+}
+
+@keyframes blink {
+    20%,
+    24%,
+    55% {
+        color: #111;
+        text-shadow: none;
+    }
+
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+        /*     color: #fccaff;
+            text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+              0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+        text-shadow: 0 0 5px #8fb2f4, 0 0 15px #8fb2f4, 0 0 20px #8fb2f4, 0 0 40px #8fb2f4, 0 0 60px #8fd3f4, 0 0 10px #8fd3f4, 0 0 98px #0000ff;
+        color: #84fab0;
+    }
+}

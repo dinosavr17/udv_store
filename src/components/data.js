@@ -1,28 +1,27 @@
-import bracelet from '../images/bracelet.png'
-import backpack from '../images/backpack.png'
-import pen from '../images/pen.png'
+import hoodie from '../images/hoodie.png'
+import mug from  '../images/mug.png'
+import beanie from '../images/beanie.png'
 export const sliderItems = [
     {
         id: 1,
-        img: bracelet,
-        title: "БРАСЛЕТИКИ",
-        desc: "ЛУЧШИЕ БРАСЛЕТИКИ ОФИГЕННЫЕ ВОСХИТИТЕЛЬНЫЕ БРАСЛЕТИКИ",
-        bg: "f5fafd",
-
+        img: hoodie,
+        title: "Толстовка",
+        desc: "140🪙",
+        bg: "#ebecef",
     },
     {
         id: 2,
-        img: backpack,
-        title: "РЮКЗАК",
-        desc: "НЕПРЕВЗОЙДЕННЫЙ РЮКЗАК СТИЛЬНЫЙ РЮКЗАК ",
-        bg: "f5fafd",
+        img: mug,
+        title: "Кружка",
+        desc: "50🪙",
+        bg: "#ebecef",
     },
     {
         id: 3,
-        img: pen,
-        title: "РУЧКИ",
-        desc: "КРУТЫЕ РУЧКИ ДЛЯ ПОДПИСАНИЯ МИЛЛИОННЫХ КОНТРАКТОВ ПОКУПАЙ РУЧКИ",
-        bg: "f5fafd",
+        img: beanie,
+        title: "Шапка",
+        desc: "80🪙",
+        bg: "#ebecef",
     },
 ];
 

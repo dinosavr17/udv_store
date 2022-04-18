@@ -9,6 +9,9 @@ const Container = styled.div`
   justify-content: center;
   font-size: 14px;
   font-weight: 500;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 export const Announcement = () => {
     return (

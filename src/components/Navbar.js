@@ -20,9 +20,6 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import './navbar.css';
 
 
-
-
-
 const Navbar = () => {
     const [sidebar, setSidebar] = useState(false);
 
@@ -100,5 +97,4 @@ const Navbar = () => {
         </>
     );
 };
-
 export default Navbar;

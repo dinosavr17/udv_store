@@ -1,9 +1,11 @@
 import React, {Fragment} from "react";
+import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
+import {Title} from "../components/Title";
 export const Home = () => {
     return (
         <Fragment>
-        <h1>Home</h1>
+            <Title/>
             <Slider/>
         </Fragment>
     )
