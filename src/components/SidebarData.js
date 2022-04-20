@@ -5,19 +5,19 @@ import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 export const SidebarData = [
     {
-        title: 'Account',
+        title: '@udv.dev',
         path: '/about',
         icon: <button className="userBalance">40&#129689;</button>,
         cName: 'nav-text'
     },
     {
-        title: 'Orders',
+        title: 'Заказы',
         path: '/orders',
         icon: <FontAwesomeIcon icon={faBagShopping} />,
         cName: 'nav-text'
     },
     {
-        title: 'Cart',
+        title: 'Корзина',
         path: '/cart',
         icon:  <Badge badgeContent={4} color="secondary">
             <ShoppingCartOutlinedIcon />
@@ -25,7 +25,7 @@ export const SidebarData = [
         cName: 'nav-text'
     },
     {
-        title: 'Quit',
+        title: 'Выход',
         path: '/sign-out',
         icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
         cName: 'nav-text'

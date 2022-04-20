@@ -65,14 +65,14 @@ const Navbar = () => {
                       <div><button className="userBalance">
                           40&#129689;</button></div>
                         <div>
-                       Account
+                       @udv.dev
                         </div>
                     </NavLink>
                     <NavLink to='/orders' activeStyle>
                         <div><FontAwesomeIcon icon={faBagShopping} />
                         </div>
                         <div>
-                            Orders
+                            Заказы
                         </div>
                     </NavLink>
                     <NavLink to='/cart' activeStyle>
@@ -80,14 +80,14 @@ const Navbar = () => {
                             <ShoppingCartOutlinedIcon />
                         </Badge>
                         <div>
-                            Cart
+                            Корзина
                         </div>
                     </NavLink>
                     <NavLink to='/sign-out' activeStyle>
                         <div><FontAwesomeIcon icon={faArrowRightFromBracket} />
                         </div>
                         <div>
-                            Quit
+                            Выход
                         </div>
                     </NavLink>
                     {/* Second Nav */}

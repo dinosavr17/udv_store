@@ -2,14 +2,10 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 .userBalance {
   background-color: #fff4e8;
   border-radius: 5px;
+  font-size: 12px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

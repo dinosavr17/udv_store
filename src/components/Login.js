@@ -3,7 +3,7 @@ import AuthContext from "../context/AuthProvider";
 import './login.css';
 import axios from "../api/axios";
 import registerLogo from '../images/logotype.svg'
-const LOGIN_URL = 'http://localhost:8080/auth';
+const LOGIN_URL = '/auth';
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
@@ -35,10 +35,8 @@ const Login = () => {
                 }
             );
             console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({ email, password, roles, accessToken });
+            console.log(JSON.stringify(response));
+            setAuth({ email, password });
             setEmail('');
             setPassword('');
             setSuccess(true);
