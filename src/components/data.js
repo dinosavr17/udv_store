@@ -8,6 +8,7 @@ export const sliderItems = [
         title: "Толстовка",
         desc: "140🪙",
         bg: "#ebecef",
+
     },
     {
         id: 2,
@@ -20,6 +21,48 @@ export const sliderItems = [
         id: 3,
         img: beanie,
         title: "Шапка",
+        desc: "80🪙",
+        bg: "#ebecef",
+    },
+    {
+        id: 4,
+        img: beanie,
+        title: "Шапкаf",
+        desc: "80🪙",
+        bg: "#ebecef",
+    },
+    {
+        id: 5,
+        img: beanie,
+        title: "Шапкаff",
+        desc: "80🪙",
+        bg: "#ebecef",
+    },
+    {
+        id: 6,
+        img: beanie,
+        title: "Шапка6",
+        desc: "80🪙",
+        bg: "#ebecef",
+    },
+    {
+        id: 7,
+        img: beanie,
+        title: "Шапка7",
+        desc: "80🪙",
+        bg: "#ebecef",
+    },
+    {
+        id: 8,
+        img: beanie,
+        title: "Шапка8",
+        desc: "80🪙",
+        bg: "#ebecef",
+    },
+    {
+        id: 9,
+        img: beanie,
+        title: "Шапка9",
         desc: "80🪙",
         bg: "#ebecef",
     },
@@ -40,6 +83,7 @@ export const categories = [
         img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         title: "LIGHT JACKETS",
     },
+
 ];
 export const popularProducts = [
     {
