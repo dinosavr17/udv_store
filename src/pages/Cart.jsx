@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import { Add, Remove } from '@mui/icons-material';
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 
@@ -156,7 +155,6 @@ export const Cart = () => {
     return (
         <Container>
             <Navbar />
-            <Announcement />
             <Wrapper>
                 <Title>YOUR BAG</Title>
                 <Top>

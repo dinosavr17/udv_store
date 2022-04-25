@@ -6,8 +6,6 @@ import {Orders} from "./pages/Orders";
 import {UserInfo} from "./pages/UserInfo";
 import {SignUp} from "./pages/SignUp";
 import {SignIn} from "./pages/SignIn";
-import Announcement from "./components/Announcement";
-import Navbar from "./components/Navbar";
 import ProductPage from "./pages/ProductPage";
 function App() {
   return (

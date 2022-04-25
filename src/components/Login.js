@@ -6,8 +6,8 @@ import registerLogo from '../images/logotype.svg'
 const LOGIN_URL = '/auth';
 
 const Login = () => {
-    const { setAuth } = useContext(AuthContext);
-    const userRef = useRef();
+    const {setAuth} = useContext(AuthContext);
+    const emailRef = useRef();
     const errRef = useRef();
 
     const [email, setEmail] = useState('');
@@ -16,7 +16,7 @@ const Login = () => {
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
-        userRef.current.focus();
+        emailRef.current.focus();
     }, [])
 
     useEffect(() => {
@@ -36,6 +36,8 @@ const Login = () => {
             );
             console.log(JSON.stringify(response?.data));
             console.log(JSON.stringify(response));
+            const accessToken = response?.data?.accessToken;
+            setAuth({email,password, accessToken});
             setEmail('');
             setPassword('');
             setSuccess(true);
@@ -60,7 +62,7 @@ const Login = () => {
                     <h1>You are logged in!</h1>
                     <br />
                     <p>
-                        <a href="#">Go to Home</a>
+                        <a href="/">Go to Home</a>
                     </p>
                 </section>
             ) : (
@@ -76,7 +78,7 @@ const Login = () => {
                             type="text"
                                placeholder="Корпоративная почта"
                             id="username"
-                            ref={userRef}
+                            ref={emailRef}
                             autoComplete="off"
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}
@@ -97,7 +99,7 @@ const Login = () => {
                         Нет аккаунта?<br />
                         <span className="line">
                             {/*put router link here*/}
-                            <a href="#">Зарегистрироваться</a>
+                            <a href="sign-up">Зарегистрироваться</a>
                         </span>
                     </p>
                     </div>

@@ -1,17 +1,14 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState} from "react";
 import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
 import {Title} from "../components/Title";
-import Categories from "../components/Categories"
-import Products from "../components/Products";
 export const Home = () => {
     return (
-        <Fragment>
+        <div>
             <Navbar/>
             <Title/>
             <Slider/>
-            <Products/>
-        </Fragment>
+        </div>
     )
 
 }

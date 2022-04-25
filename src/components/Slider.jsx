@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {sliderItems} from "./data";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import {Modal} from "./Modal";
 import './button.css'
 const Container = styled.div`
   background-color: #222222;
@@ -92,6 +93,7 @@ const Button = styled.button`
   
 `;
 const Slider = () => {
+    const [modalActive, setModalActive] = useState(false);
     const [slideIndex, setSlideIndex] = useState(-1);
     const handleClick = (direction) => {
         if (direction === "left") {
@@ -118,7 +120,7 @@ const Slider = () => {
                             <Desc>{item.desc}</Desc>
                             </div>
                         <div>
-                            <Button className='custom-btn'>Купить</Button>
+                            <Button onClick={() => setModalActive(true)} className='custom-btn'>Купить</Button>
                             </div>
                         </InfoContainer>
                     </Slide>
@@ -127,6 +129,7 @@ const Slider = () => {
             <Arrow direction="right" onClick={() => handleClick("right")}>
                 <ArrowForwardIosIcon />
             </Arrow>
+            <Modal active={modalActive} setActive={setModalActive}/>
         </Container>
     );
 };

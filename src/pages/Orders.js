@@ -1,9 +1,11 @@
-import React, {Fragment} from "react";
+import React from "react";
+import Navbar from "../components/Navbar";
 export const Orders = () => {
     return (
-        <Fragment>
+        <div>
+        <Navbar/>
             <h1>Order History</h1>
-        </Fragment>
+        </div>
     )
 
 }

@@ -1,6 +1,11 @@
 import { createContext, useState } from "react";
-
-const AuthContext = createContext({});
+function noop() { }
+const AuthContext = createContext({
+    login: noop,
+    logout: noop,
+    token: null,
+    userId: null,
+});
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({});

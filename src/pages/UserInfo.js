@@ -1,9 +1,11 @@
-import React, {Fragment} from "react";
+import React from "react";
+import Navbar from "../components/Navbar";
 export const UserInfo = () => {
     return (
-        <Fragment>
+        <div>
+            <Navbar/>
             <h1>User Info</h1>
-        </Fragment>
+        </div>
     )
 
 }
