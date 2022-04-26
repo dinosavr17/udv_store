@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useContext} from 'react';
 import {
     Nav,
     NavLink,
@@ -16,13 +16,14 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 import Badge from '@mui/material/Badge';
+import AuthContext from "../context/AuthProvider";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import './navbar.css';
 
 
 const Navbar = () => {
     const [sidebar, setSidebar] = useState(false);
-
+    const setAuth = useContext(AuthContext);
     const showSidebar = () => setSidebar(!sidebar);
     return (
         <>
@@ -83,8 +84,9 @@ const Navbar = () => {
                             Корзина
                         </div>
                     </NavLink>
-                    <NavLink to='/sign-out' activeStyle>
-                        <div><FontAwesomeIcon icon={faArrowRightFromBracket} />
+                    <NavLink to='/sign-in' activeStyle>
+                        <div><FontAwesomeIcon icon={faArrowRightFromBracket} onClick={() => {
+                            setAuth.logout()}}/>
                         </div>
                         <div>
                             Выход
