@@ -19,6 +19,7 @@ import Badge from '@mui/material/Badge';
 import AuthContext from "../context/AuthProvider";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import './navbar.css';
+import { useSelector } from "react-redux";
 
 
 const Navbar = () => {
@@ -77,7 +78,7 @@ const Navbar = () => {
                         </div>
                     </NavLink>
                     <NavLink to='/cart' activeStyle>
-                        <Badge component="badge" id='cart_badge' badgeContent={4} color='secondary'>
+                        <Badge component="badge" id='cart_badge'  badgeContent={4} color='secondary'>
                             <ShoppingCartOutlinedIcon />
                         </Badge>
                         <div>

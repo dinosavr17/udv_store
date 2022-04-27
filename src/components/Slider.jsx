@@ -112,7 +112,7 @@ const Slider = () => {
                 {sliderItems.map((item) => (
                     <Slide bg={item.bg} key={item.id}>
                         <ImgContainer>
-                            <Image src={item.img} />
+                            <Image onClick={() => setModalActive(true)} src={item.img} />
                         </ImgContainer>
                         <InfoContainer>
                         <div>
@@ -120,7 +120,7 @@ const Slider = () => {
                             <Desc>{item.desc}</Desc>
                             </div>
                         <div>
-                            <Button onClick={() => setModalActive(true)} className='custom-btn'>Купить</Button>
+                            <Button  className='custom-btn'>Купить</Button>
                             </div>
                         </InfoContainer>
                     </Slide>

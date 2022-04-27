@@ -7,6 +7,7 @@ import styled from "styled-components";
 import React, {useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
 import axios from "../api/axios";
+import {Modal} from "./Modal";
 
 const Container = styled.div`
   flex: 1;
@@ -72,10 +73,13 @@ display: flex;
 `;
 
 const Product = ({ item }) => {
+    const [modalActive, setModalActive] = useState(false);
+    const handleClick = () => { }
     return (
+
         <Container>
             <ImgContainer>
-                <div><img src={item.imgUrl}/></div>
+                <div><img onClick={() => setModalActive(true)} src={item.imgUrl}/></div>
             </ImgContainer>
             <InfoContainer>
                 <div>
@@ -83,9 +87,10 @@ const Product = ({ item }) => {
                     <Desc>{item.price}</Desc>
                 </div>
                 <div>
-                    <Button className='custom-btn'>Купить</Button>
+                    <Button onClick={handleClick} className='custom-btn'>Купить</Button>
                 </div>
             </InfoContainer>
+            <Modal active={modalActive} setActive={setModalActive}/>
         </Container>
     );
 };

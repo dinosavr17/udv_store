@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import {popularProducts} from "./data";
 import Product from "./Product";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "../api/axios";
+import {Modal} from "./Modal";
 const PRODUCTS_URL = '/products';
 const Container = styled.div`
   padding: 20px;
@@ -15,6 +16,7 @@ const Container = styled.div`
 const Products = ({ cat, filters, sort }) => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [modalActive, setModalActive] = useState(false);
 
     useEffect(() => {
         const getProducts = async () => {
