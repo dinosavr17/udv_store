@@ -4,12 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from "./context/AuthProvider";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
+      <Router>
       <AuthProvider>
-          <App/>
+          <Routes>
+              <Route path="/*" element={<App />} />
+          </Routes>
       </AuthProvider>
+          </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

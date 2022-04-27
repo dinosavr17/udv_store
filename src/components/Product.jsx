@@ -4,8 +4,9 @@ import {
     ShoppingCartOutlined,
 } from '@mui/icons-material';
 import styled from "styled-components";
-import React from "react";
-
+import React, {useEffect, useState} from "react";
+import {useLocation} from "react-router-dom";
+import axios from "../api/axios";
 
 const Container = styled.div`
   flex: 1;
@@ -74,12 +75,12 @@ const Product = ({ item }) => {
     return (
         <Container>
             <ImgContainer>
-            <Image src={item.img} />
+                <div><img src={item.imgUrl}/></div>
             </ImgContainer>
             <InfoContainer>
                 <div>
-                    <Title>Продукт</Title>
-                    <Desc>Описание</Desc>
+                    <Title>{item.name}</Title>
+                    <Desc>{item.price}</Desc>
                 </div>
                 <div>
                     <Button className='custom-btn'>Купить</Button>

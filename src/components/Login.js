@@ -1,19 +1,25 @@
-import { useRef, useState, useEffect, useContext } from 'react';
-import AuthContext from "../context/AuthProvider";
+import { useRef, useState, useEffect } from 'react';
+import useAuth from '../hooks/useAuth';
 import './login.css';
 import axios from "../api/axios";
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import registerLogo from '../images/logotype.svg'
 const LOGIN_URL = '/auth';
 
 const Login = () => {
-    const {setAuth} = useContext(AuthContext);
+    const {setAuth} = useAuth();
+
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
     const emailRef = useRef();
     const errRef = useRef();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         emailRef.current.focus();
@@ -40,7 +46,7 @@ const Login = () => {
             setAuth({email,password, accessToken});
             setEmail('');
             setPassword('');
-            setSuccess(true);
+            navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -56,16 +62,6 @@ const Login = () => {
     }
 
     return (
-        <>
-            {success ? (
-                <section className="login_section">
-                    <h1>You are logged in!</h1>
-                    <br />
-                    <p>
-                        <a href="/">Go to Home</a>
-                    </p>
-                </section>
-            ) : (
                 <section className="login_section">
                     <div className="register_logo">
                         <img className="registerLogo" src={registerLogo} alt='logo'/>
@@ -104,8 +100,6 @@ const Login = () => {
                     </p>
                     </div>
                 </section>
-            )}
-        </>
     )
 }
 

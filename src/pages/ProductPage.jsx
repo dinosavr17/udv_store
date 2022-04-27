@@ -104,7 +104,7 @@ const ProductPage = () => {
                     <Image src={hoodie}/>
                 </ImgContainer>
                 <InfoContainer>
-                    <Title>Натяни сову на глобус</Title>
+                    <Title>Толстовка</Title>
                     <Desc>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
                         venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
