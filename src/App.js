@@ -15,6 +15,7 @@ function App() {
 
     return (
         <Routes>
+
             <Route path="/" element={<Layout />}>
                 {/* public routes */}
                 <Route path="linkpage" element={<LinkPage />} />
@@ -22,7 +23,7 @@ function App() {
                 <Route path="sign-up" element={<SignUp />} />
 
                 {/* we want to protect these routes */}
-                <Route>
+                <Route element={<RequireAuth/>}>
                     <Route path="/" element={<Home />} />
                     <Route path="cart" element={<Cart />} />
                     <Route path="orders" element={<Orders />} />

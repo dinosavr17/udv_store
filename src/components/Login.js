@@ -42,7 +42,7 @@ const Login = () => {
             );
             console.log(JSON.stringify(response?.data));
             console.log(JSON.stringify(response));
-            const accessToken = response?.data?.accessToken;
+            const accessToken = response?.data?.token;
             setAuth({email,password, accessToken});
             setEmail('');
             setPassword('');

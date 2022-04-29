@@ -79,7 +79,7 @@ const Product = ({ item }) => {
 
         <Container>
             <ImgContainer>
-                <div><img onClick={() => setModalActive(true)} src={item.imgUrl}/></div>
+                <div><Image alt='товар' onClick={() => setModalActive(true)} src={item.imageUrl}/></div>
             </ImgContainer>
             <InfoContainer>
                 <div>
