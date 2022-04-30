@@ -5,7 +5,7 @@ import axios from "../api/axios";
 import './register.css';
 import registerLogo from '../images/logotype.svg'
 
-const USER_REGEX = /^([\w-\.]+@(?=ussc.ru)([\w-]+\.)+[\w-]{2,4})?$/;
+const USER_REGEX = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
 const REGISTER_URL = '/register';
 

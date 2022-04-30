@@ -1,22 +1,19 @@
 import { createContext, useState, useCallback, useEffect } from "react";
 function noop() { }
 const AuthContext = createContext({
+    accessToken: null,
     login: noop,
     logout: noop,
-    token: null,
-    userId: null,
 });
-
+const storageName = 'userData'
 export const AuthProvider = ({ children }) => {
-    const storageName = 'userData'
     const [auth, setAuth] = useState({});
     const [token, setToken] = useState(null)
-
-    const login = useCallback((jwtToken, id, name) => {
+    const login = useCallback((jwtToken, email ) => {
         setToken(jwtToken)
 
         localStorage.setItem(storageName, JSON.stringify({
-            userId: id, token: jwtToken, userName: name
+             accessToken: jwtToken, email: email,
         }))
 
     }, [])
@@ -32,7 +29,7 @@ export const AuthProvider = ({ children }) => {
         }
     }, [login])
     return (
-        <AuthContext.Provider value={{ auth, setAuth, login, logout, token }}>
+        <AuthContext.Provider value={{auth, setAuth, login, logout, token }}>
             {children}
         </AuthContext.Provider>
     )

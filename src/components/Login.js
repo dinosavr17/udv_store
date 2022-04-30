@@ -9,7 +9,6 @@ const LOGIN_URL = '/auth';
 const Login = () => {
     const {setAuth} = useAuth();
 
-
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -50,6 +49,7 @@ const Login = () => {
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
+                console.log(err);
             } else if (err.response?.status === 400) {
                 setErrMsg('Missing Username or Password');
             } else if (err.response?.status === 401) {

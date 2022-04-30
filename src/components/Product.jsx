@@ -84,7 +84,7 @@ const Product = ({ item }) => {
             <InfoContainer>
                 <div>
                     <Title>{item.name}</Title>
-                    <Desc>{item.price}</Desc>
+                    <Desc>{item.price}🪙</Desc>
                 </div>
                 <div>
                     <Button onClick={handleClick} className='custom-btn'>Купить</Button>
