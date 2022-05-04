@@ -21,9 +21,9 @@ const Products = ({ cat, filters, sort }) => {
     useEffect(() => {
         const getProducts = async () => {
             try {
-                const res = await axios.get('/products');
-                console.log(res)
-                setProducts(res.data);
+                const response = await axios.get('/products');
+                console.log(response)
+                setProducts(response.data);
             } catch (err) {}
         };
         getProducts();
@@ -59,10 +59,17 @@ const Products = ({ cat, filters, sort }) => {
     return (
         <Container>
             {cat
-                ? products.map((item) => <Product item={item} key={item.id} />)
+                ? products.map((item) => {
+                    console.log("ITEM",item)
+                    return(<Product item={item} key={item.id} />)
+
+                })
                 : products
                     .slice(0, 8)
-                    .map((item) => <Product item={item} key={item.id} />)}
+                    .map((item) => {
+                        return(<Product item={item} key={item.id} />)
+
+                    }) }}
         </Container>
     );
 };

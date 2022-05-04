@@ -7,7 +7,7 @@ import registerLogo from '../images/logotype.svg'
 const LOGIN_URL = '/auth';
 
 const Login = () => {
-    const {setAuth} = useAuth();
+    const {setAuth,login} = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -39,10 +39,11 @@ const Login = () => {
                     withCredentials: true
                 }
             );
-            console.log(JSON.stringify(response?.data));
-            console.log(JSON.stringify(response));
+            // console.log(JSON.stringify(response?.data));
+            // console.log(JSON.stringify(response));
             const accessToken = response?.data?.token;
             setAuth({email,password, accessToken});
+            login(accessToken,email)
             setEmail('');
             setPassword('');
             navigate(from, { replace: true });

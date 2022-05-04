@@ -1,4 +1,5 @@
 import { createContext, useState, useCallback, useEffect } from "react";
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 function noop() { }
 const AuthContext = createContext({
     accessToken: null,
@@ -8,13 +9,15 @@ const AuthContext = createContext({
 const storageName = 'userData'
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({});
+    const navigate = useNavigate();
+
     const [token, setToken] = useState(null)
     const login = useCallback((jwtToken, email ) => {
         setToken(jwtToken)
-
         localStorage.setItem(storageName, JSON.stringify({
              accessToken: jwtToken, email: email,
         }))
+        setAuth(jwtToken)
 
     }, [])
     const logout = useCallback(() => {

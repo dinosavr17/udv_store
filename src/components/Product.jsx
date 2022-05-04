@@ -8,6 +8,7 @@ import React, {useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
 import axios from "../api/axios";
 import {Modal} from "./Modal";
+import ProductPage from "./ProductPage";
 
 const Container = styled.div`
   flex: 1;
@@ -23,8 +24,12 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  height: 75%;
-  z-index: 2;
+  max-height: 100%;
+  max-width: 100%;
+  &:hover {
+    background-color: #e9f5f5;
+    transform: scale(1.1);
+  }
 `;
 
 const Icon = styled.div`
@@ -58,7 +63,7 @@ const Button = styled.button`
   
 `;
 const InfoContainer = styled.div`
-  color: black;
+  color: whitesmoke;
   margin-top: 0.75em;
   display: flex;
   flex-direction: column;
@@ -68,16 +73,25 @@ const InfoContainer = styled.div`
 `;
 const ImgContainer = styled.div`
   margin-top: 0.5em;
-  height: 70%;
+  max-height: 60%;
+ justify-items: center;
+  align-items: center;
 display: flex;
 `;
 
 const Product = ({ item }) => {
     const [modalActive, setModalActive] = useState(false);
+    const [product, setProduct] = useState({});
     const handleClick = () => { }
-    return (
 
+    useEffect(async ()=>{
+        const response=await axios.get(`/products/${item.id}`)
+        console.log("Product",response.data)
+        setProduct(response.data);
+    },[item])
+    return (
         <Container>
+            <ProductPage item={product} key={product.id} />
             <ImgContainer>
                 <div><Image alt='товар' onClick={() => setModalActive(true)} src={item.imageUrl}/></div>
             </ImgContainer>
@@ -90,7 +104,9 @@ const Product = ({ item }) => {
                     <Button onClick={handleClick} className='custom-btn'>Купить</Button>
                 </div>
             </InfoContainer>
-            <Modal active={modalActive} setActive={setModalActive}/>
+            <Modal active={modalActive} setActive={setModalActive}>
+                <div>{item.id}</div>
+            </Modal>
         </Container>
     );
 };
