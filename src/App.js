@@ -15,14 +15,14 @@ import useAuth from "./hooks/useAuth";
 
 function App() {
 
-    const {login}=useAuth()
+    const {login, logout}=useAuth()
     const navigate = useNavigate();
 
     useEffect(()=>{
 
-        const localStorageData=JSON.parse(localStorage.getItem("userData"))
-        login(localStorageData.accessToken,localStorageData.email)
-        localStorageData.accessToken && navigate("/")
+        // const localStorageData=JSON.parse(localStorage.getItem("userData"))
+        // login(localStorageData.accessToken,localStorageData.email)
+        // localStorageData.accessToken && navigate("/")
     },[])
 
     return (

@@ -2,7 +2,6 @@ import { createContext, useState, useCallback, useEffect } from "react";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 function noop() { }
 const AuthContext = createContext({
-    accessToken: null,
     login: noop,
     logout: noop,
 });
@@ -21,7 +20,6 @@ export const AuthProvider = ({ children }) => {
 
     }, [])
     const logout = useCallback(() => {
-        setToken(null)
         localStorage.removeItem(storageName)
     }, [])
     useEffect(() => {

@@ -8,7 +8,6 @@ export const Modal = ({active, setActive, children}) => {
    <div className={active? 'modal active': 'modal'} onClick={() => setActive(false)}>
        <div className='modal-content' onClick={event => event.stopPropagation()}>
            {children}
-           <ProductPage/>
        </div>
 
    </div>

@@ -1,5 +1,6 @@
 import {
-    FavoriteBorderOutlined,
+    Add,
+    FavoriteBorderOutlined, Remove,
     SearchOutlined,
     ShoppingCartOutlined,
 } from '@mui/icons-material';
@@ -22,13 +23,18 @@ const Container = styled.div`
   background-color: #f5fbfd;
   position: relative;
 `;
-
+const Wrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
 const Image = styled.img`
-  max-height: 100%;
+  max-height: 60%;
   max-width: 100%;
   &:hover {
     background-color: #e9f5f5;
     transform: scale(1.1);
+    max-height: 60%;
   }
 `;
 
@@ -63,20 +69,36 @@ const Button = styled.button`
   
 `;
 const InfoContainer = styled.div`
-  color: whitesmoke;
-  margin-top: 0.75em;
+  color: black;
+  padding: 0.5em;
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: center;
-  height: 40%;
+  max-height: 40%;
 `;
 const ImgContainer = styled.div`
-  margin-top: 0.5em;
-  max-height: 60%;
  justify-items: center;
   align-items: center;
 display: flex;
+  flex-direction: column;
+  max-height: 60%;
+  padding: 0.5em;
+`;
+const AmountContainer = styled.div`
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+`;
+const Amount = styled.span`
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid teal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 5px;
 `;
 
 const Product = ({ item }) => {
@@ -91,7 +113,7 @@ const Product = ({ item }) => {
     },[item])
     return (
         <Container>
-            <ProductPage item={product} key={product.id} />
+            <Wrapper>
             <ImgContainer>
                 <div><Image alt='товар' onClick={() => setModalActive(true)} src={item.imageUrl}/></div>
             </ImgContainer>
@@ -105,8 +127,17 @@ const Product = ({ item }) => {
                 </div>
             </InfoContainer>
             <Modal active={modalActive} setActive={setModalActive}>
-                <div>{item.id}</div>
+                <ImgContainer>
+                <Image src={product.imageUrl}/>
+                </ImgContainer>
+                <InfoContainer>
+                    <Title>{product.name}</Title>
+                    <div>{product.amount}</div>
+                <div>{product.price}</div>
+                <Desc>{product.description}</Desc>
+                </InfoContainer>
             </Modal>
+            </Wrapper>
         </Container>
     );
 };
