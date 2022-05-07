@@ -76,6 +76,7 @@ const InfoContainer = styled.div`
   justify-items: center;
   align-items: center;
   max-height: 40%;
+  background-color: whitesmoke;
 `;
 const ImgContainer = styled.div`
  justify-items: center;
@@ -126,17 +127,30 @@ const Product = ({ item }) => {
                     <Button onClick={handleClick} className='custom-btn'>Купить</Button>
                 </div>
             </InfoContainer>
+
             <Modal active={modalActive} setActive={setModalActive}>
-                <ImgContainer>
-                <Image src={product.imageUrl}/>
-                </ImgContainer>
-                <InfoContainer>
-                    <Title>{product.name}</Title>
-                    <div>{product.amount}</div>
-                <div>{product.price}</div>
-                <Desc>{product.description}</Desc>
-                </InfoContainer>
+                <Container>
+                    <Wrapper>
+                        <ImgContainer>
+                            <Image src={product.imageUrl}></Image>
+                        </ImgContainer>
+                        <InfoContainer>
+                            <Title>{product.name}</Title>
+                                <AmountContainer>
+                                    <Remove/>
+                                    <Amount>{product.amount}</Amount>
+                                    <Add/>
+                                </AmountContainer>
+                            <Desc>
+                                <div>{product.description}</div>
+                                <div>{product.price}</div>
+                            </Desc>
+                                <Button classname='custom-btn'>Купить</Button>
+                        </InfoContainer>
+                    </Wrapper>
+                </Container>
             </Modal>
+
             </Wrapper>
         </Container>
     );

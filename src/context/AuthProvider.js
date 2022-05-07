@@ -4,6 +4,7 @@ function noop() { }
 const AuthContext = createContext({
     login: noop,
     logout: noop,
+    token: null,
 });
 const storageName = 'userData'
 export const AuthProvider = ({ children }) => {

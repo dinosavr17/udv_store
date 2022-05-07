@@ -1,4 +1,4 @@
-import React,{useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {
     Nav,
     NavLink,
@@ -20,12 +20,28 @@ import AuthContext from "../context/AuthProvider";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import './navbar.css';
 import { useSelector } from "react-redux";
+import axios from "../api/axios";
 
 
 const Navbar = () => {
     const [sidebar, setSidebar] = useState(false);
     const setAuth = useContext(AuthContext);
+    const authentify = useContext(AuthContext);
+    const login = useContext(AuthContext);
+    const [balance, setBalance] = useState({})
     const showSidebar = () => setSidebar(!sidebar);
+
+    useEffect(async ()=>{
+        const response=await axios.get(
+            '/info',
+            {
+                headers: {
+                    'Authorization': `Bearer ${authentify.token}`,
+                },
+            }
+        );
+        console.log("info",response.data)
+    },)
     return (
         <>
             <Nav>
