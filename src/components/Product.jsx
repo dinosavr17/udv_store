@@ -10,6 +10,8 @@ import {useLocation} from "react-router-dom";
 import axios from "../api/axios";
 import {Modal} from "./Modal";
 import ProductPage from "./ProductPage";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div`
   flex: 1;
@@ -105,13 +107,28 @@ const Amount = styled.span`
 const Product = ({ item }) => {
     const [modalActive, setModalActive] = useState(false);
     const [product, setProduct] = useState({});
-    const handleClick = () => { }
+    const [quantity, setQuantity] = useState(1);
+    const dispatch = useDispatch();
+
 
     useEffect(async ()=>{
         const response=await axios.get(`/products/${item.id}`)
         console.log("Product",response.data)
         setProduct(response.data);
     },[item])
+    const handleQuantity = (type) => {
+        if (type === "dec") {
+            quantity > 1 && setQuantity(quantity - 1);
+        } else {
+            setQuantity(quantity + 1);
+        }
+    };
+    const handleClick = () => {
+        dispatch(
+            addProduct({ ...product, quantity })
+        );
+    };
+
     return (
         <Container>
             <Wrapper>
@@ -124,7 +141,7 @@ const Product = ({ item }) => {
                     <Desc>{item.price}🪙</Desc>
                 </div>
                 <div>
-                    <Button onClick={handleClick} className='custom-btn'>Купить</Button>
+                    <Button className='custom-btn'>Купить</Button>
                 </div>
             </InfoContainer>
 
@@ -137,15 +154,18 @@ const Product = ({ item }) => {
                         <InfoContainer>
                             <Title>{product.name}</Title>
                                 <AmountContainer>
-                                    <Remove/>
-                                    <Amount>{product.amount}</Amount>
-                                    <Add/>
+                                    <Remove onClick={() => handleQuantity("dec")} />
+                                    <Amount>{quantity}</Amount>
+                                    <Add onClick={() => handleQuantity("inc")} />
                                 </AmountContainer>
                             <Desc>
                                 <div>{product.description}</div>
-                                <div>{product.price}</div>
+                                <div>{product.price}🪙</div>
+                                <div>Осталось: {product.amount} шт</div>
                             </Desc>
-                                <Button classname='custom-btn'>Купить</Button>
+                            <div>
+                                <Button onClick={handleClick} className='custom-btn'>Купить</Button>
+                            </div>
                         </InfoContainer>
                     </Wrapper>
                 </Container>

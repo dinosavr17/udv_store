@@ -5,9 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from "./context/AuthProvider";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {Provider} from "react-redux";
+import {store,persistor} from './redux/store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}/>
       <Router>
       <AuthProvider>
           <Routes>
@@ -15,7 +19,7 @@ ReactDOM.render(
           </Routes>
       </AuthProvider>
           </Router>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 

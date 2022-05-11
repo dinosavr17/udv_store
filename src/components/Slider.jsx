@@ -129,7 +129,6 @@ const Slider = () => {
             <Arrow direction="right" onClick={() => handleClick("right")}>
                 <ArrowForwardIosIcon />
             </Arrow>
-            <Modal active={modalActive} setActive={setModalActive}/>
         </Container>
     );
 };

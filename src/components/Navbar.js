@@ -31,18 +31,23 @@ const Navbar = () => {
     const [balance, setBalance] = useState({})
     const showSidebar = () => setSidebar(!sidebar);
 
-    useEffect(async ()=>{
-        const response=await axios.get(
-            '/info',
-            {
-                headers: {
-                    'Authorization': `Bearer ${authentify.token}`,
-                },
-            }
-        );
-        console.log("info",response.data)
-    },)
+    // useEffect(async ()=>{
+    //     const response=await axios.get(
+    //         '/info',
+    //         {
+    //             headers: {
+    //                 'Authorization': `Bearer ${authentify.token}`,
+    //             },
+    //         }
+    //     );
+    //     console.log("info",response.data)
+    //
+    // },)
+    // console.log(authentify.token)
+    const quantity = useSelector(state=>state.cart.quantity)
+    console.log(quantity)
     return (
+
         <>
             <Nav>
                 <NavLink to='/'>
@@ -94,7 +99,7 @@ const Navbar = () => {
                         </div>
                     </NavLink>
                     <NavLink to='/cart' activeStyle>
-                        <Badge component="badge" id='cart_badge'  badgeContent={4} color='secondary'>
+                        <Badge component="badge" id='cart_badge'  badgeContent={quantity} color='secondary'>
                             <ShoppingCartOutlinedIcon />
                         </Badge>
                         <div>
@@ -103,7 +108,8 @@ const Navbar = () => {
                     </NavLink>
                     <NavLink to='/sign-in' activeStyle>
                         <div><FontAwesomeIcon icon={faArrowRightFromBracket} onClick={() => {
-                            setAuth.logout()}}/>
+                            setAuth.logout(); localStorage.clear();
+                        }}/>
                         </div>
                         <div>
                             Выход

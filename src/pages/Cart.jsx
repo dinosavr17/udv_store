@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import hoodie from '../images/hoodie.png'
 import beanie from '../images/beanie.png'
+import {useSelector} from "react-redux";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -153,6 +154,7 @@ const Button = styled.button`
 `;
 
 export const Cart = () => {
+    const cart = useSelector((state) => state.cart);
     return (
         <Container>
             <Navbar />
@@ -168,63 +170,42 @@ export const Cart = () => {
                 </Top>
                 <Bottom>
                     <Info>
-                        <Product>
-                            <ProductDetail>
-                                <Image src={hoodie} />
-                                <Details>
-                                    <ProductName>
-                                        <b>Продукт:</b> Худи UDV
-                                    </ProductName>
-                                    <ProductId>
-                                        <b>ID:</b> 93813718293
-                                    </ProductId>
-                                    <ProductColor color="black" />
-                                    <ProductSize>
-                                        <b>Размер:</b> S
-                                    </ProductSize>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetail>
-                                <ProductAmountContainer>
-                                    <Add />
-                                    <ProductAmount>2</ProductAmount>
-                                    <Remove />
-                                </ProductAmountContainer>
-                                <ProductPrice>140🪙</ProductPrice>
-                            </PriceDetail>
-                        </Product>
+                        {cart.products.map((product) => (
+                            <Product>
+                                <ProductDetail>
+                                    <Image src={product.imageUrl} />
+                                    <Details>
+                                        <ProductName>
+                                            <b>Product:</b> {product.name}
+                                        </ProductName>
+                                        <ProductId>
+                                            <b>ID:</b> {product.id}
+                                        </ProductId>
+                                        <ProductColor color='black'/>
+                                        <ProductSize>
+                                            <b>Size:</b> XS
+                                        </ProductSize>
+                                    </Details>
+                                </ProductDetail>
+                                <PriceDetail>
+                                    <ProductAmountContainer>
+                                        <Add />
+                                        <ProductAmount>{product.quantity}</ProductAmount>
+                                        <Remove />
+                                    </ProductAmountContainer>
+                                    <ProductPrice>
+                                        🪙 {product.price * product.quantity}
+                                    </ProductPrice>
+                                </PriceDetail>
+                            </Product>
+                        ))}
                         <Hr />
-                        <Product>
-                            <ProductDetail>
-                                <Image src={beanie}/>
-                                <Details>
-                                    <ProductName>
-                                        <b>Продукт:</b> Шапка
-                                    </ProductName>
-                                    <ProductId>
-                                        <b>ID:</b> 93813718293
-                                    </ProductId>
-                                    <ProductColor color="black" />
-                                    <ProductSize>
-                                        <b>Размер:</b> Универсальный
-                                    </ProductSize>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetail>
-                                <ProductAmountContainer>
-                                    <Add />
-                                    <ProductAmount>1</ProductAmount>
-                                    <Remove />
-                                </ProductAmountContainer>
-                                <ProductPrice>20🪙</ProductPrice>
-                            </PriceDetail>
-                        </Product>
                     </Info>
                     <Summary>
                         <SummaryTitle>Сумма</SummaryTitle>
                         <SummaryItem type="total">
                             <SummaryItemText>Итог</SummaryItemText>
-                            <SummaryItemPrice>160🪙</SummaryItemPrice>
+                            <SummaryItemPrice>🪙 {cart.total}</SummaryItemPrice>
                         </SummaryItem>
                         <Button>Заплатить</Button>
                     </Summary>
