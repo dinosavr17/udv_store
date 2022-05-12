@@ -21,29 +21,33 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import './navbar.css';
 import { useSelector } from "react-redux";
 import axios from "../api/axios";
+import useAuth from "../hooks/useAuth";
 
 
 const Navbar = () => {
     const [sidebar, setSidebar] = useState(false);
     const setAuth = useContext(AuthContext);
-    const authentify = useContext(AuthContext);
+    const accessToken = useContext(AuthContext);
     const login = useContext(AuthContext);
+    const {token} = useAuth();
     const [balance, setBalance] = useState({})
     const showSidebar = () => setSidebar(!sidebar);
 
-    // useEffect(async ()=>{
-    //     const response=await axios.get(
-    //         '/info',
-    //         {
-    //             headers: {
-    //                 'Authorization': `Bearer ${authentify.token}`,
-    //             },
-    //         }
-    //     );
-    //     console.log("info",response.data)
-    //
-    // },)
-    // console.log(authentify.token)
+    useEffect(async ()=>{
+        const response=await axios.get(
+            '/info',
+            {
+                headers: {
+                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                },
+            }
+        );
+        console.log("info",response.data);
+        console.log(response.data.userBalance)
+        setBalance(response.data.userBalance);
+
+
+    },)
     const quantity = useSelector(state=>state.cart.quantity)
     console.log(quantity)
     return (
@@ -108,8 +112,7 @@ const Navbar = () => {
                     </NavLink>
                     <NavLink to='/sign-in' activeStyle>
                         <div><FontAwesomeIcon icon={faArrowRightFromBracket} onClick={() => {
-                            setAuth.logout(); localStorage.clear();
-                        }}/>
+                            setAuth.logout();} }/>
                         </div>
                         <div>
                             Выход

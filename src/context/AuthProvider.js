@@ -21,7 +21,8 @@ export const AuthProvider = ({ children }) => {
 
     }, [])
     const logout = useCallback(() => {
-        localStorage.removeItem(storageName)
+        localStorage.removeItem(storageName);
+        localStorage.clear();
     }, [])
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem(storageName))

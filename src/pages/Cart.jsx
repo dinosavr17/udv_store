@@ -3,9 +3,7 @@ import { Add, Remove } from '@mui/icons-material';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
-import hoodie from '../images/hoodie.png'
-import beanie from '../images/beanie.png'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -155,6 +153,9 @@ const Button = styled.button`
 
 export const Cart = () => {
     const cart = useSelector((state) => state.cart);
+    const total = useSelector((state) => state.cart.total);
+    const quantity = useSelector((state) => state.cart.quantity);
+    const dispatch = useDispatch();
     return (
         <Container>
             <Navbar />
@@ -189,12 +190,12 @@ export const Cart = () => {
                                 </ProductDetail>
                                 <PriceDetail>
                                     <ProductAmountContainer>
-                                        <Add />
-                                        <ProductAmount>{product.quantity}</ProductAmount>
-                                        <Remove />
+                                        <Add/>
+                                        <ProductAmount>{cart.quantity}</ProductAmount>
+                                        <Remove/>
                                     </ProductAmountContainer>
                                     <ProductPrice>
-                                        🪙 {product.price * product.quantity}
+                                        🪙 {product.price}
                                     </ProductPrice>
                                 </PriceDetail>
                             </Product>
@@ -205,7 +206,7 @@ export const Cart = () => {
                         <SummaryTitle>Сумма</SummaryTitle>
                         <SummaryItem type="total">
                             <SummaryItemText>Итог</SummaryItemText>
-                            <SummaryItemPrice>🪙 {cart.total}</SummaryItemPrice>
+                            <SummaryItemPrice>🪙{cart.total}</SummaryItemPrice>
                         </SummaryItem>
                         <Button>Заплатить</Button>
                     </Summary>

@@ -10,7 +10,7 @@ import {useLocation} from "react-router-dom";
 import axios from "../api/axios";
 import {Modal} from "./Modal";
 import ProductPage from "./ProductPage";
-import { addProduct } from "../redux/cartRedux";
+import {addProduct, removeProduct} from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 
 const Container = styled.div`
@@ -107,7 +107,7 @@ const Amount = styled.span`
 const Product = ({ item }) => {
     const [modalActive, setModalActive] = useState(false);
     const [product, setProduct] = useState({});
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(0);
     const dispatch = useDispatch();
 
 
@@ -118,58 +118,70 @@ const Product = ({ item }) => {
     },[item])
     const handleQuantity = (type) => {
         if (type === "dec") {
-            quantity > 1 && setQuantity(quantity - 1);
+            quantity > 0 && setQuantity(quantity - 1);
         } else {
             setQuantity(quantity + 1);
         }
+        return quantity;
     };
-    const handleClick = () => {
+    const handleAdd = () => {
         dispatch(
-            addProduct({ ...product, quantity })
+            addProduct({...product, quantity })
         );
+    };
+    const handleRemove = () => {
+        if (quantity>0) {
+            dispatch(
+                removeProduct({...product, quantity})
+            );
+        }
+        else {
+            alert('Нечего удалять');
+        }
     };
 
     return (
         <Container>
             <Wrapper>
-            <ImgContainer>
-                <div><Image alt='товар' onClick={() => setModalActive(true)} src={item.imageUrl}/></div>
-            </ImgContainer>
-            <InfoContainer>
-                <div>
-                    <Title>{item.name}</Title>
-                    <Desc>{item.price}🪙</Desc>
-                </div>
-                <div>
-                    <Button className='custom-btn'>Купить</Button>
-                </div>
-            </InfoContainer>
+                <ImgContainer>
+                    <div><Image alt='товар' onClick={() => setModalActive(true)} src={item.imageUrl}/></div>
+                </ImgContainer>
+                <InfoContainer>
+                    <div>
+                        <Title>{item.name}</Title>
+                        <Desc>{item.price}🪙</Desc>
+                    </div>
+                    <div>
+                        <Button className='custom-btn'>Купить</Button>
+                    </div>
+                </InfoContainer>
 
-            <Modal active={modalActive} setActive={setModalActive}>
-                <Container>
-                    <Wrapper>
-                        <ImgContainer>
-                            <Image src={product.imageUrl}></Image>
-                        </ImgContainer>
-                        <InfoContainer>
-                            <Title>{product.name}</Title>
+                <Modal active={modalActive} setActive={setModalActive}>
+                    <Container>
+                        <Wrapper>
+                            <ImgContainer>
+                                <Image src={product.imageUrl}></Image>
+                            </ImgContainer>
+                            <InfoContainer>
+                                <Title>{product.name}</Title>
                                 <AmountContainer>
                                     <Remove onClick={() => handleQuantity("dec")} />
                                     <Amount>{quantity}</Amount>
                                     <Add onClick={() => handleQuantity("inc")} />
                                 </AmountContainer>
-                            <Desc>
-                                <div>{product.description}</div>
-                                <div>{product.price}🪙</div>
-                                <div>Осталось: {product.amount} шт</div>
-                            </Desc>
-                            <div>
-                                <Button onClick={handleClick} className='custom-btn'>Купить</Button>
-                            </div>
-                        </InfoContainer>
-                    </Wrapper>
-                </Container>
-            </Modal>
+                                <Desc>
+                                    <div>{product.description}</div>
+                                    <div>{product.price}🪙</div>
+                                    <div>Осталось: {product.amount} шт</div>
+                                </Desc>
+                                <div>
+                                    <Button onClick={handleAdd} className='custom-btn'>Купить</Button>
+                                    <Button onClick={handleRemove}>Удалить</Button>
+                                </div>
+                            </InfoContainer>
+                        </Wrapper>
+                    </Container>
+                </Modal>
 
             </Wrapper>
         </Container>
