@@ -6,10 +6,8 @@ import {
 } from '@mui/icons-material';
 import styled from "styled-components";
 import React, {useEffect, useState} from "react";
-import {useLocation} from "react-router-dom";
 import axios from "../api/axios";
 import {Modal} from "./Modal";
-import ProductPage from "./ProductPage";
 import {addProduct, removeProduct} from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 

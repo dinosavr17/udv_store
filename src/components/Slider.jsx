@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import {sliderItems} from "./data";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import {Modal} from "./Modal";
 import './button.css'
 const Container = styled.div`
   background-color: #222222;

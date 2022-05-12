@@ -5,7 +5,6 @@ import {Orders} from "./pages/Orders";
 import {UserInfo} from "./pages/UserInfo";
 import {SignUp} from "./pages/SignUp";
 import {SignIn} from "./pages/SignIn";
-import ProductPage from "./components/ProductPage";
 import RequireAuth from './components/RequireAuth';
 import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import LinkPage from "./components/LinkPage";
@@ -39,7 +38,6 @@ function App() {
                     <Route path="cart" element={<Cart />} />
                     <Route path="orders" element={<Orders />} />
                     <Route path="about" element={<UserInfo />} />
-                    <Route path="singleProductPage" element={<ProductPage />} />
                 </Route>
 
                 {/* catch all */}

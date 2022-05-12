@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import {popularProducts} from "./data";
 import Product from "./Product";
 import React, {useEffect, useState} from "react";
 import axios from "../api/axios";
-import {Modal} from "./Modal";
 const PRODUCTS_URL = '/products';
 const Container = styled.div`
   padding: 20px;

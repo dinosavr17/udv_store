@@ -6,13 +6,10 @@ import {
     NavMenu,
 } from './NavbarElements';
 import logoImage from '../images/logotype.svg'
-import ReactDOM from 'react-dom';
-import Link from 'react-router-dom';
 import {SidebarData} from "./SidebarData";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
-import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 import Badge from '@mui/material/Badge';
@@ -21,16 +18,12 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import './navbar.css';
 import { useSelector } from "react-redux";
 import axios from "../api/axios";
-import useAuth from "../hooks/useAuth";
 
 
 const Navbar = () => {
     const [sidebar, setSidebar] = useState(false);
     const setAuth = useContext(AuthContext);
-    const accessToken = useContext(AuthContext);
-    const login = useContext(AuthContext);
-    const {token} = useAuth();
-    const [balance, setBalance] = useState({})
+    const [info, setInfo] = useState([]);
     const showSidebar = () => setSidebar(!sidebar);
 
     useEffect(async ()=>{
@@ -42,12 +35,10 @@ const Navbar = () => {
                 },
             }
         );
-        console.log("info",response.data);
-        console.log(response.data.userBalance)
-        setBalance(response.data.userBalance);
-
-
-    },)
+        console.log(response.data.userBalance);
+        setInfo(response.data);
+        console.log(response.data);
+    },[])
     const quantity = useSelector(state=>state.cart.quantity)
     console.log(quantity)
     return (
@@ -88,11 +79,11 @@ const Navbar = () => {
                 </IconContext.Provider>
 
                 <NavMenu>
-                    <NavLink to='/about' activeStyle>
+                    <NavLink to='#'>
                       <div><button className="userBalance">
-                          40&#129689;</button></div>
+                          {info.userBalance}&#129689;</button></div>
                         <div>
-                       @udv.dev
+                            {info.email}
                         </div>
                     </NavLink>
                     <NavLink to='/orders' activeStyle>

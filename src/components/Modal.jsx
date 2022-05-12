@@ -1,7 +1,5 @@
 import React from "react";
-import Product from "./Product";
 import './modal.css'
-import ProductPage from "./ProductPage";
 
 export const Modal = ({active, setActive, children}) => {
     return (

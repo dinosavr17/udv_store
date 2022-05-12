@@ -1,10 +1,9 @@
-import React, {useContext} from 'react';
-import {faArrowRightFromBracket, faBagShopping, faCartShopping} from '@fortawesome/free-solid-svg-icons'
+import React from 'react';
+import {faArrowRightFromBracket, faBagShopping} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Badge from '@mui/material/Badge';
 
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import AuthContext from "../context/AuthProvider";
 export const SidebarData = [
     {
         title: '@udv.dev',
