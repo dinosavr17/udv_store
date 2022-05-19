@@ -10,12 +10,21 @@ import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import LinkPage from "./components/LinkPage";
 import './App.css';
 import {useEffect} from "react";
+import {useState} from "react";
+import {useDarkMode} from "./useDarkMode";
 import useAuth from "./hooks/useAuth";
-
+import styled, { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme, GlobalStyles } from "./themes.js";
+import Toggle from "./components/Toggle";
+const StyledApp = styled.div`
+  color: ${(props) => props.theme.fontColor};
+`
 function App() {
 
     const {login, logout}=useAuth()
     const navigate = useNavigate();
+    const [ theme, toggleTheme ] = useDarkMode();
+    const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
     useEffect(()=>{
 
@@ -25,6 +34,10 @@ function App() {
     },[])
 
     return (
+        <ThemeProvider theme={themeMode}>
+            <StyledApp>
+            <GlobalStyles />
+                <Toggle theme={theme} toggleTheme={toggleTheme}/>
         <Routes>
             <Route path="/" element={<Layout />}>
                 {/* public routes */}
@@ -44,6 +57,8 @@ function App() {
             {/*    <Route path="*" element={<Missing />} />*/}
             </Route>
         </Routes>
+            </StyledApp>
+            </ThemeProvider>
     );
 }
 

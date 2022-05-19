@@ -8,7 +8,6 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
- background-color: #222222;
 `;
 
 const Products = ({ cat, filters, sort }) => {

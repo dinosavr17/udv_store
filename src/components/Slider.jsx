@@ -5,7 +5,6 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './button.css'
 const Container = styled.div`
-  background-color: #222222;
   width: 100%;
   height: 80vh;
   display: flex;
@@ -17,7 +16,6 @@ const Container = styled.div`
 const Arrow = styled.div`
   width: 50px;
   height: 50px;
-  background-color: #fff7f7;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -47,7 +45,6 @@ const Slide = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: #${(props) => props.bg};
   margin: 1em;
 `;
 
@@ -67,7 +64,6 @@ const Image = styled.img`
 `;
 
 const InfoContainer = styled.div`
-  color: whitesmoke;
   margin-top: 0.75em;
   display: flex;
   flex-direction: column;
@@ -119,7 +115,7 @@ const Slider = () => {
                             <Desc>{item.desc}</Desc>
                             </div>
                         <div>
-                            <Button  className='custom-btn'>Купить</Button>
+                            <Button className='custom-btn'>Купить</Button>
                             </div>
                         </InfoContainer>
                     </Slide>

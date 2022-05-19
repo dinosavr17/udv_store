@@ -10,8 +10,8 @@ import {store,persistor} from './redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
 
 ReactDOM.render(
+    <React.StrictMode>
   <Provider store={store}>
-      <PersistGate  persistor={persistor}/>
       <Router>
       <AuthProvider>
           <Routes>
@@ -19,7 +19,8 @@ ReactDOM.render(
           </Routes>
       </AuthProvider>
           </Router>
-  </Provider>,
+  </Provider>
+    </React.StrictMode>,
   document.getElementById('root')
 );
 

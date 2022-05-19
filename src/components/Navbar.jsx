@@ -9,6 +9,8 @@ import logoImage from '../images/logotype.svg'
 import {SidebarData} from "./SidebarData";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons'
+import {faMoon} from '@fortawesome/free-solid-svg-icons'
+import {faSun} from '@fortawesome/free-solid-svg-icons'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import * as AiIcons from 'react-icons/ai';
 import { IconContext } from 'react-icons';
@@ -25,7 +27,6 @@ const Navbar = () => {
     const setAuth = useContext(AuthContext);
     const [info, setInfo] = useState([]);
     const showSidebar = () => setSidebar(!sidebar);
-
     useEffect(async ()=>{
         const response=await axios.get(
             '/info',
@@ -78,7 +79,7 @@ const Navbar = () => {
                     </nav>
                 </IconContext.Provider>
 
-                <NavMenu>
+                <NavMenu classname='sidebar'>
                     <NavLink to='#'>
                       <div><button className="userBalance">
                           {info.userBalance}&#129689;</button></div>
@@ -102,8 +103,8 @@ const Navbar = () => {
                         </div>
                     </NavLink>
                     <NavLink to='/sign-in' activeStyle>
-                        <div><FontAwesomeIcon icon={faArrowRightFromBracket} onClick={() => {
-                            setAuth.logout();} }/>
+                        <div><FontAwesomeIcon className='icon' icon={faArrowRightFromBracket} onClick={() => {
+                            setAuth.logout()} }/>
                         </div>
                         <div>
                             Выход
