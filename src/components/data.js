@@ -1,13 +1,17 @@
 import hoodie from '../images/hoodie.png'
 import mug from  '../images/mug.png'
 import beanie from '../images/beanie.png'
+import space1 from  '../images/space1.png'
+import octopus from '../images/oct.png'
+import sliderBack from '../images/bp.png'
+import tShirt from '../images/shrt.png'
 export const sliderItems = [
     {
         id: 1,
-        img: hoodie,
-        title: "Толстовка",
-        desc: "140🪙",
-        bg: "#ebecef",
+        img1: octopus,
+        img2: sliderBack,
+        img3: tShirt,
+        bg: space1,
 
     },
     {
@@ -15,56 +19,14 @@ export const sliderItems = [
         img: mug,
         title: "Кружка",
         desc: "50🪙",
-        bg: "#ebecef",
+        bg: "space1",
     },
     {
         id: 3,
         img: beanie,
         title: "Шапка",
         desc: "80🪙",
-        bg: "#ebecef",
-    },
-    {
-        id: 4,
-        img: beanie,
-        title: "Шапкаf",
-        desc: "80🪙",
-        bg: "#ebecef",
-    },
-    {
-        id: 5,
-        img: beanie,
-        title: "Шапкаff",
-        desc: "80🪙",
-        bg: "#ebecef",
-    },
-    {
-        id: 6,
-        img: beanie,
-        title: "Шапка6",
-        desc: "80🪙",
-        bg: "#ebecef",
-    },
-    {
-        id: 7,
-        img: beanie,
-        title: "Шапка7",
-        desc: "80🪙",
-        bg: "#ebecef",
-    },
-    {
-        id: 8,
-        img: beanie,
-        title: "Шапка8",
-        desc: "80🪙",
-        bg: "#ebecef",
-    },
-    {
-        id: 9,
-        img: beanie,
-        title: "Шапка9",
-        desc: "80🪙",
-        bg: "#ebecef",
+        bg: "space1",
     },
 ];
 export const categories = [

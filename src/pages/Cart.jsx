@@ -1,9 +1,11 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState} from "react";
 import { Add, Remove } from '@mui/icons-material';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import {useDispatch, useSelector} from "react-redux";
+import axios from "../api/axios";
+
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -155,7 +157,19 @@ export const Cart = () => {
     const cart = useSelector((state) => state.cart);
     const total = useSelector((state) => state.cart.total);
     const quantity = useSelector((state) => state.cart.quantity);
-    const dispatch = useDispatch();
+    const [order, setOrder] = useState('');
+    // const dispatch = useDispatch();
+    // const createOrder = async () => {
+    //     try {
+    //         const response = await axios.post('/user/orders',
+    //             JSON.stringify({ order }),
+    //             {
+    //                 headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:3000' },
+    //                 withCredentials: true
+    //             }
+    //         );
+    //     } catch (err) {}
+    // };
     return (
         <Container>
             <Navbar />
@@ -190,12 +204,12 @@ export const Cart = () => {
                                 </ProductDetail>
                                 <PriceDetail>
                                     <ProductAmountContainer>
-                                        <Add/>
-                                        <ProductAmount>{cart.quantity}</ProductAmount>
+                                        <Add AddProd/>
+                                        <ProductAmount>{product.quantity}</ProductAmount>
                                         <Remove/>
                                     </ProductAmountContainer>
                                     <ProductPrice>
-                                        🪙 {product.price}
+                                        🪙  $ {product.price * product.quantity}
                                     </ProductPrice>
                                 </PriceDetail>
                             </Product>
@@ -208,7 +222,7 @@ export const Cart = () => {
                             <SummaryItemText>Итог</SummaryItemText>
                             <SummaryItemPrice>🪙{cart.total}</SummaryItemPrice>
                         </SummaryItem>
-                        <Button>Заплатить</Button>
+                        <Button onSubmit={console.log(cart)}>Заплатить</Button>
                     </Summary>
                 </Bottom>
             </Wrapper>

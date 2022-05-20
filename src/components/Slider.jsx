@@ -4,6 +4,8 @@ import {sliderItems} from "./data";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './button.css'
+import './slider.css'
+import Parallax from 'parallax-js';
 const Container = styled.div`
   width: 100%;
   height: 80vh;
@@ -11,6 +13,7 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
   justify-content: center;
+  background-color: #171616;
 `;
 
 const Arrow = styled.div`
@@ -29,6 +32,7 @@ const Arrow = styled.div`
   cursor: pointer;
   opacity: 0.5;
   z-index: 2;
+  background-color: #fff4e8;
 `;
 
 const Wrapper = styled.div`
@@ -39,13 +43,16 @@ const Wrapper = styled.div`
 `;
 
 const Slide = styled.div`
-  width: 30vw;
+  width: 100vw;
   height: 80vh;
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   margin: 1em;
+  padding: 2em;
+  background-image: url("${(props) => props.bg}");
+  overflow: hidden;
 `;
 
 const ImgContainer = styled.div`
@@ -87,7 +94,17 @@ const Desc = styled.p`
 const Button = styled.button`
   
 `;
+
 const Slider = () => {
+    window.onload=function() {
+    let scene = document.getElementById('scene');
+    if (scene) {
+        let parallax = new Parallax(scene, {
+            hoverOnly: true,
+            relativeInput: true
+        });
+    };}
+
     const [modalActive, setModalActive] = useState(false);
     const [slideIndex, setSlideIndex] = useState(-1);
     const handleClick = (direction) => {
@@ -98,26 +115,32 @@ const Slider = () => {
         }
     };
 
+
     return (
-        <Container>
+        <Container className='containerSlide'>
             <Arrow direction="left" onClick={() => handleClick("left")}>
                 <ArrowBackIosIcon />
             </Arrow>
             <Wrapper slideIndex={slideIndex}>
                 {sliderItems.map((item) => (
                     <Slide bg={item.bg} key={item.id}>
+                            <div id="scene" data-hover-only="true"  className="scene border">
+                                <div className='layer' data-depth="1.0"><img src={item.img1}/></div>
+                                <div className='layer' data-depth="0.60"><img src={item.img2}/></div>
+                                <div className='layer' data-depth="0.40"><img src={item.img3}/></div>
+                            </div>
                         <ImgContainer>
-                            <Image onClick={() => setModalActive(true)} src={item.img} />
+                        <Image data-depth="0.2" onClick={() => setModalActive(true)} src={item.img} />
                         </ImgContainer>
-                        <InfoContainer>
-                        <div>
-                            <Title>{item.title}</Title>
-                            <Desc>{item.desc}</Desc>
-                            </div>
-                        <div>
-                            <Button className='custom-btn'>Купить</Button>
-                            </div>
-                        </InfoContainer>
+                        {/*<InfoContainer>*/}
+                        {/*<div>*/}
+                        {/*    <Title>{item.title}</Title>*/}
+                        {/*    <Desc>{item.desc}</Desc>*/}
+                        {/*    </div>*/}
+                        {/*<div>*/}
+                        {/*    <Button className='custom-btn'>Купить</Button>*/}
+                        {/*    </div>*/}
+                        {/*</InfoContainer>*/}
                     </Slide>
                 ))}
             </Wrapper>

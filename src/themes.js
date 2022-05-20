@@ -4,14 +4,16 @@ export const lightTheme = {
     body: "#fff",
     fontColor: "#000",
     link: "#222222",
-    sidebar: "#fff"
+    sidebar: "#fff",
+    // slider: "#F5E6CB"
 };
 
 export const darkTheme = {
     body: "#0e0d0d",
     fontColor: "#fff",
     link: '#fff',
-    sidebar: "#000"
+    sidebar: "#000",
+    // slider: '#222222'
 };
 
 export const GlobalStyles = createGlobalStyle`
@@ -24,4 +26,7 @@ export const GlobalStyles = createGlobalStyle`
     .nav-menu {
       background-color: ${(props) => props.theme.body };
     }
+    // .containerSlide {
+    //   background-color: ${(props) => props.theme.slider};
+    // }
 `;
