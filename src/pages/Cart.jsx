@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import { Add, Remove } from '@mui/icons-material';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
@@ -154,20 +154,33 @@ const Button = styled.button`
 `;
 
 export const Cart = () => {
+    const ORDER_URL = '/user/orders';
     const cart = useSelector((state) => state.cart);
     const total = useSelector((state) => state.cart.total);
     const quantity = useSelector((state) => state.cart.quantity);
     const [order, setOrder] = useState('');
-    // const dispatch = useDispatch();
-    // const createOrder = async () => {
+    const dispatch = useDispatch();
+    useEffect( ()=> {
+        const order1 = cart.products.map(product => {
+            return (
+                {productId:product.id, quantity: product.quantity}
+            )
+        } )
+        setOrder(order1);
+    },[cart])
+    let orderCreationDetails = [];
+    orderCreationDetails.push= order;
+    console.log('массив',orderCreationDetails);
+    // const handleSubmit = async () => {
     //     try {
-    //         const response = await axios.post('/user/orders',
-    //             JSON.stringify({ order }),
+    //         const response = await axios.post(ORDER_URL,
+    //             JSON.stringify( orderCreationDetails ),
     //             {
-    //                 headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:3000' },
+    //                 headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:3000','Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`},
     //                 withCredentials: true
-    //             }
+    //             },
     //         );
+    //         console.log(response?.data);
     //     } catch (err) {}
     // };
     return (
@@ -222,7 +235,7 @@ export const Cart = () => {
                             <SummaryItemText>Итог</SummaryItemText>
                             <SummaryItemPrice>🪙{cart.total}</SummaryItemPrice>
                         </SummaryItem>
-                        <Button onSubmit={console.log(cart)}>Заплатить</Button>
+                        <Button>Заплатить</Button>
                     </Summary>
                 </Bottom>
             </Wrapper>

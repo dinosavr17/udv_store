@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from 'styled-components'
 import {sliderItems} from "./data";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -32,7 +32,7 @@ const Arrow = styled.div`
   cursor: pointer;
   opacity: 0.5;
   z-index: 2;
-  background-color: #fff4e8;
+  background-color: #282c34;
 `;
 
 const Wrapper = styled.div`
@@ -96,15 +96,16 @@ const Button = styled.button`
 `;
 
 const Slider = () => {
-    window.onload=function() {
-    let scene = document.getElementById('scene');
-    if (scene) {
-        let parallax = new Parallax(scene, {
-            hoverOnly: true,
-            relativeInput: true
-        });
-    };}
-
+  // window.onload=function() {
+  //   let scene = document.getElementById('scene');
+  //   if (scene) {
+  //       let parallax = new Parallax(scene);
+  //   };}
+    useEffect(()=>{
+        let scene = document.getElementById('scene');
+        if (scene) {
+        let parallax = new Parallax(scene);
+    }},[])
     const [modalActive, setModalActive] = useState(false);
     const [slideIndex, setSlideIndex] = useState(-1);
     const handleClick = (direction) => {
