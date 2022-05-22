@@ -98,3 +98,41 @@ label {
 .line {
     display: inline-block;
 }
+.card {
+    display: grid;
+    flex-direction: row;
+    grid-template-areas: 'adm-card1 adm-card2'
+                        'adm-card3 adm-card4';
+    width: 100%;
+    height: 100vh;
+    grid-template-rows: 0.3fr 0.3fr;
+    grid-template-columns: 0.3fr 0.3fr;
+    gap: 10px;
+   align-content: center;
+    justify-content: center;
+    background-image: url("../images/back.png");
+    height: 100vh;
+    width: 100vw;
+}
+.adm-card {
+    background-color: #00d29d;
+    border-radius: 10px;
+}
+.adm-card1 {
+   grid-area: adm-card1;
+}
+.adm-card2 {
+    grid-area: adm-card2;
+
+}
+.adm-card3 {
+    grid-area: adm-card3;
+
+}
+.adm-card4 {
+    grid-area: adm-card4;
+
+}
+.adm-icons {
+    max-width: 40%;
+}

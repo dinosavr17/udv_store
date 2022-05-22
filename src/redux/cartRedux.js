@@ -19,11 +19,10 @@ const cartSlice = createSlice({
             // let bug =state.products.map(product => product.quantity);
             // alert(bug);
             // alert(action.payload.quantity)
-            // state.cart.products.quantity -= action.payload.quantity;
-            // state.total -= action.payload.price * action.payload.quantity;
+            state.total -= action.payload.price * action.payload.quantity;
             // state.products[0].quantity=state.products[0].quantity-action.payload.quantity;
             let ass;
-            // (state.quantity===0)?state.products.pop(action.payload.products):alert('Удаляем не все продукты');
+             (state.quantity===0)?state.products.pop(action.payload.products):alert('Удаляем не все продукты');
             state.products.map((product, index) => {
               console.log('Дошло', product.id === action.payload.id);
                 console.log('Количество',product.quantity)

@@ -32,7 +32,7 @@ const Arrow = styled.div`
   cursor: pointer;
   opacity: 0.5;
   z-index: 2;
-  background-color: #282c34;
+  background-color: rgba(255, 255, 255, 0.71);
 `;
 
 const Wrapper = styled.div`

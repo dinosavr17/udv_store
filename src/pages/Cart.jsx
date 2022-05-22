@@ -168,21 +168,25 @@ export const Cart = () => {
         } )
         setOrder(order1);
     },[cart])
-    let orderCreationDetails = [];
-    orderCreationDetails.push= order;
-    console.log('массив',orderCreationDetails);
-    // const handleSubmit = async () => {
-    //     try {
-    //         const response = await axios.post(ORDER_URL,
-    //             JSON.stringify( orderCreationDetails ),
-    //             {
-    //                 headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:3000','Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`},
-    //                 withCredentials: true
-    //             },
-    //         );
-    //         console.log(response?.data);
-    //     } catch (err) {}
-    // };
+    let orderCreationDetails = {};
+    orderCreationDetails= order;
+    console.log('массив', orderCreationDetails);
+    const handleSubmit = async () => {
+        try {
+            console.log(JSON.stringify({orderCreationDetails}));
+            const response = await axios.post(ORDER_URL,
+                JSON.stringify( {orderCreationDetails} ),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': 'http://localhost:3000',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`
+                    },
+                },
+            );
+            console.log(response?.data);
+        } catch (err) {}
+    };
     return (
         <Container>
             <Navbar />
@@ -235,7 +239,7 @@ export const Cart = () => {
                             <SummaryItemText>Итог</SummaryItemText>
                             <SummaryItemPrice>🪙{cart.total}</SummaryItemPrice>
                         </SummaryItem>
-                        <Button>Заплатить</Button>
+                        <Button onClick={handleSubmit}>Заплатить</Button>
                     </Summary>
                 </Bottom>
             </Wrapper>

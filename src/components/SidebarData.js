@@ -33,3 +33,18 @@ export const SidebarData = [
         cName: 'nav-text'
     },
 ];
+export const admSidebarData = [
+    {
+        title: '@udv.dev',
+        path: '/about',
+        icon: <button className="userBalance">40&#129689;</button>,
+        cName: 'nav-text'
+    },
+    {
+        title: 'Выход',
+        path: '/sign-in',
+        icon: <FontAwesomeIcon icon={faArrowRightFromBracket} onClick={() => {
+            localStorage.clear()} } />,
+        cName: 'nav-text'
+    },
+];

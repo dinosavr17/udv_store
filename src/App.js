@@ -16,6 +16,9 @@ import useAuth from "./hooks/useAuth";
 import styled, { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "./themes.js";
 import Toggle from "./components/Toggle";
+import {AdminBalance} from "./pages/AdminBalance";
+import {AdminHome} from "./pages/AdminHome";
+
 const StyledApp = styled.div`
   color: ${(props) => props.theme.fontColor};
 `
@@ -44,7 +47,8 @@ function App() {
                 <Route path="linkpage" element={<LinkPage />} />
                 <Route path="sign-in" element={<SignIn />} />
                 <Route path="sign-up" element={<SignUp />} />
-
+                <Route path='adm-balance' element={<AdminBalance/>}/>
+                <Route path='adm-home' element={<AdminHome/>}/>
                 {/* we want to protect these routes element={RequireAuth/>*/}
                 <Route  element={<RequireAuth/>}>
                     <Route index element={<Home />} />
