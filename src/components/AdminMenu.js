@@ -8,7 +8,7 @@ import messageIcon from '../images/messagesIcon.png'
 const AdminMenu = () => {
 
     return (
-            <div className="card">
+            <div className="card-adm">
             <div className='adm-card1 adm-card'>
                 <div>Запросы</div>
                 <div><img className='adm-icons' src={messageIcon}/></div>

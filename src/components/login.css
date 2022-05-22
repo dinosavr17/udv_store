@@ -98,7 +98,7 @@ label {
 .line {
     display: inline-block;
 }
-.card {
+.card-adm {
     display: grid;
     flex-direction: row;
     grid-template-areas: 'adm-card1 adm-card2'

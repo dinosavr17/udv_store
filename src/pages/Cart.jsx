@@ -180,7 +180,7 @@ export const Cart = () => {
                     headers: {
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': 'http://localhost:3000',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
                     },
                 },
             );
