@@ -65,22 +65,44 @@ const Navbar = () => {
                                     <AiIcons.AiOutlineClose />
                                 </NavLink>
                             </li>
-                            {SidebarData.map((item, index) => {
-                                return (
-                                    <li key={index} className={item.cName}>
-                                        <NavLink to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
+                                    <li>
+                                        <NavLink to='#' activeStyle>
+                                            <div><button className="userBalance">
+                                                {info.userBalance}&#129689;</button></div>
+                                            <div>
+                                                {info.email}
+                                            </div>
+                                        </NavLink>
+                                        <NavLink to='/orders' activeStyle>
+                                            <div><FontAwesomeIcon icon={faBagShopping} />
+                                            </div>
+                                            <div>
+                                                Заказы
+                                            </div>
+                                        </NavLink>
+                                        <NavLink to='/cart' activeStyle>
+                                            <Badge component="badge" id='cart_badge'  badgeContent={quantity} color='secondary'>
+                                                <ShoppingCartOutlinedIcon />
+                                            </Badge>
+                                            <div>
+                                                Корзина
+                                            </div>
+                                        </NavLink>
+                                        <NavLink to='/sign-in' activeStyle>
+                                            <div><FontAwesomeIcon className='icon' icon={faArrowRightFromBracket} onClick={() => {
+                                                setAuth.logout()} }/>
+                                            </div>
+                                            <div>
+                                                Выход
+                                            </div>
                                         </NavLink>
                                     </li>
-                                );
-                            })}
                         </ul>
                     </nav>
                 </IconContext.Provider>
 
                 <NavMenu classname='sidebar'>
-                    <NavLink to='#'>
+                    <NavLink to='#' activeStyle>
                       <div><button className="userBalance">
                           {info.userBalance}&#129689;</button></div>
                         <div>

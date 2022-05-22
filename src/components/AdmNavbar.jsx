@@ -59,16 +59,23 @@ const AdmNavbar = () => {
                                     <AiIcons.AiOutlineClose />
                                 </NavLink>
                             </li>
-                            {admSidebarData.map((item, index) => {
-                                return (
-                                    <li key={index} className={item.cName}>
-                                        <NavLink to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </NavLink>
-                                    </li>
-                                );
-                            })}
+                            <li>
+                            <NavLink to='#'>
+                                <div><button className="userBalance">
+                                    {info.userBalance}&#129689;</button></div>
+                                <div>
+                                    {info.email}
+                                </div>
+                            </NavLink>
+                            <NavLink to='/sign-in' activeStyle>
+                                <div><FontAwesomeIcon className='icon' icon={faArrowRightFromBracket} onClick={() => {
+                                    setAuth.logout()} }/>
+                                </div>
+                                <div>
+                                    Выход
+                                </div>
+                            </NavLink>
+                                </li>
                         </ul>
                     </nav>
                 </IconContext.Provider>

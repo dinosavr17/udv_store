@@ -154,7 +154,7 @@ const Button = styled.button`
 `;
 
 export const Cart = () => {
-    const ORDER_URL = '/user/orders';
+    const ORDER_URL = 'http://localhost:3000/user/orders';
     const cart = useSelector((state) => state.cart);
     const total = useSelector((state) => state.cart.total);
     const quantity = useSelector((state) => state.cart.quantity);
