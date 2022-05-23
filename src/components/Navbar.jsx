@@ -6,11 +6,8 @@ import {
     NavMenu,
 } from './NavbarElements';
 import logoImage from '../images/logotype.svg'
-import {SidebarData} from "./SidebarData";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons'
-import {faMoon} from '@fortawesome/free-solid-svg-icons'
-import {faSun} from '@fortawesome/free-solid-svg-icons'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import * as AiIcons from 'react-icons/ai';
 import { IconContext } from 'react-icons';
