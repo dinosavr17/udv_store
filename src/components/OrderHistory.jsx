@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {mobile} from "../responsive";
 import axios from "../api/axios";
 import {OrderDetails} from "./OrderDetails";
+import shortid from 'shortid';
 import {Modal} from "./Modal";
 const Container = styled.div`
   border-color: #222222;
@@ -98,23 +99,24 @@ export const OrderHistory = () => {
                </Title>
                <Info>
                    {orderRecords.map((order) => (
-                       <Order>
+                       <Order key={order.id}>
                            <OrderDetail>
                                {/*<Image src={product.imageUrl} />*/}
                                <Details>
-                                   <CreationDate>
+                                   <CreationDate key={shortid.generate()}>
                                        <b>Дата Создания:</b> {order.creationDate}
                                    </CreationDate>
-                                   <ProductId>
+                                   <ProductId key={shortid.generate()}>
                                        <b>ID:</b> {order.id}
                                    </ProductId>
-                                   <ProductSize>
+                                   <ProductSize key={shortid.generate()}>
                                        <b>Сумма Заказа:</b> {order.total}🪙
                                    </ProductSize>
                                </Details>
                            </OrderDetail>
                            <PriceDetail>
                                <ProductPrice>
+                                <OrderDetails item={order} />
                                </ProductPrice>
                                <ProductAmountContainer>
                                </ProductAmountContainer>
@@ -122,14 +124,6 @@ export const OrderHistory = () => {
                        </Order>
                    ))}
                </Info>
-               <Container>
-                   {orderRecords.map((item) => {
-                       return(
-                           <OrderDetails item={item} key={item.id}/>
-
-                       );
-                   })}
-               </Container>
            </Wrapper>
        </Container>
     )
