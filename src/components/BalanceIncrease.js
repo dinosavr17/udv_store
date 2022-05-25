@@ -80,11 +80,16 @@ const OrderButton = styled.button`
 
 const BalanceIncrease = () => {
     const [users,setUsers] = useState({});
-    const [increaseBalance,setIncreaseBalance] = useState({});
+    const [finalBalance,setFinalBalance] = useState({});
+
     const [balance, setBalance] = useState({});
+    const [id,setId] = useState({});
     const changeValue = (event) => {
         setBalance({...balance, [event.target.name]:event.target.value})
+        setId({...id, userId:event.target.id})
     }
+    console.log('Попа',id);
+    console.log('Попа2',balance);
     useEffect(async ()=>{
         const response=await axios.get(
             'http://localhost:3000/admin/info',
@@ -105,13 +110,30 @@ const BalanceIncrease = () => {
         return {[key]: users[key]};
     });
     console.log('Ага',userArray);
-    const handleClick = (event, emailUser) => {
+    const handleClick = async (event, userId) => {
         // setBalance({...balance, [event.target.name]:event.target.value})
-        console.log('лог',emailUser);
-        const userBalance = balance[emailUser];
-        setBalance({...balance, [emailUser]:''});
-
-    }
+        console.log('лог',);
+        const preUserBalance = balance[userId];
+        console.log('Баланс', preUserBalance);
+        let userBalance = Number(preUserBalance);
+        let profile = {};
+        profile = {...id,userBalance};
+        console.log(profile);
+        try {
+            console.log(JSON.stringify(profile));
+            const response = await axios.post('http://localhost:3000/admin/user_balance',
+                JSON.stringify(profile),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': 'http://localhost:3000',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                    },
+                },
+            );
+            console.log(response?.data);
+        } catch (err) {}
+    };
     return (
         <section className="login_section">
             <div className="card">
@@ -137,13 +159,13 @@ const BalanceIncrease = () => {
                                         </ProductAmountContainer>
                                             <input key={user.uuid}
                                                    type="text"
-                                                   id="increase"
+                                                   id={user.uuid}
                                                    required
                                                    onChange={changeValue}
-                                                   value={balance[user.email]||''}
-                                                   name={user.email}
+                                                   value={balance[user.uuid]||''}
+                                                   name={user.uuid}
                                             />
-                                            <button onClick={(event)=>handleClick(event,user.email)} className="login_btn">Начислить</button>
+                                            <button onClick={(event)=>handleClick(event,user.uuid)} className="login_btn">Начислить</button>
                                     </PriceDetail>
                                 </Order>
                             ))}
