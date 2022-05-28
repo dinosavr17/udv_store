@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
 
     const [token, setToken] = useState(null)
-    const login = useCallback((jwtToken, email ) => {
+    const login = useCallback((jwtToken, email, roleId ) => {
         setToken(jwtToken)
         localStorage.setItem(storageName, JSON.stringify({
              accessToken: jwtToken, email: email,

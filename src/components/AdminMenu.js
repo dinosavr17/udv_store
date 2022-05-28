@@ -10,32 +10,32 @@ const AdminMenu = () => {
     return (
         <nav>
             <div className="card-adm">
-            <NavLink to='#'>
+            <NavLink to='/adm-orders'>
             <div className='adm-card1 adm-card'>
-                <div>Запросы</div>
+                <div>Заказы</div>
                 <div><img className='adm-icons' src={messageIcon}/></div>
             </div>
             </NavLink>
                 <NavLink to='/'>
             <div className='adm-card2 adm-card'>
-                <div>Магазин</div>
+                <div>ПОЛЬЗОВАТЕЛИ(ПОМЕНЯТЬ РУТ)</div>
                 <div><img className='adm-icons' src={shopImg}/></div>
             </div>
                 </NavLink>
-                <NavLink to='#'>
+                <NavLink to='/adm-product'>
             <div className='adm-card3 adm-card'>
-                <div>Добавить товар</div>
+                <div>Товары</div>
                 <div><img className='adm-icons' src={productAdditionImg}/></div>
             </div>
                 </NavLink>
                 <NavLink to='/adm-balance'>
                 <div className='adm-card4 adm-card'>
-                    <div>Изменить Баланс</div>
+                    <div>Баланс</div>
                     <div><img className='adm-icons' src={balanceImg}/></div>
                 </div>
                 </NavLink>
             </div>
-
+//Переименовать карточки, добавить удаление пользователей, ПОМЕНЯТЬ ИКОНКУ ДЛЯ ПОЛЬЗОВАТЕЛЕЙ И ЗАКАЗОВ
             </nav>
     )
 }

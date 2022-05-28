@@ -18,7 +18,11 @@ import { lightTheme, darkTheme, GlobalStyles } from "./themes.js";
 import Toggle from "./components/Toggle";
 import {AdminBalance} from "./pages/AdminBalance";
 import {AdminHome} from "./pages/AdminHome";
-
+import {AdminOrders} from "./pages/AdminOrders";
+import {AdminProduct} from "./pages/AdminProduct";
+import {AdminAddProduct} from "./components/AdminAddProduct";
+import {AdminRemoveProduct} from "./components/AdminRemoveProduct";
+import {AdminShowProducts} from "./components/AdminShowProducts";
 const StyledApp = styled.div`
   color: ${(props) => props.theme.fontColor};
 `
@@ -47,14 +51,19 @@ function App() {
                 <Route path="linkpage" element={<LinkPage />} />
                 <Route path="sign-in" element={<SignIn />} />
                 <Route path="sign-up" element={<SignUp />} />
-                <Route path='adm-balance' element={<AdminBalance/>}/>
-                <Route path='adm-home' element={<AdminHome/>}/>
                 {/* we want to protect these routes element={RequireAuth/>*/}
                 <Route  element={<RequireAuth/>}>
                     <Route index element={<Home />} />
                     <Route path="cart" element={<Cart />} />
                     <Route path="orders" element={<Orders />} />
                     <Route path="about" element={<UserInfo />} />
+                    <Route path='adm-balance' element={<AdminBalance/>}/>
+                    <Route path='adm-home' element={<AdminHome/>}/>
+                    <Route path='adm-orders' element={<AdminOrders/>}/>
+                    <Route path='adm-product' element={<AdminProduct/>}/>
+                    <Route path='adm-add' element={<AdminAddProduct/>}/>
+                    <Route path='adm-remove' element={<AdminRemoveProduct/>}/>
+                    <Route path='adm-show' element={<AdminShowProducts/>}/>
                 </Route>
 
                 {/* catch all */}

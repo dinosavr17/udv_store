@@ -14,6 +14,7 @@ export const Nav = styled.nav`
 `;
 
 export const NavLink = styled(Link)`
+  list-style: none;
   display: flex;
   flex-direction: column;
   align-items: center;

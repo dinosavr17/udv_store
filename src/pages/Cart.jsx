@@ -5,7 +5,8 @@ import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "../api/axios";
-
+import {clearCart, removeProduct} from "../redux/cartRedux";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -184,8 +185,14 @@ export const Cart = () => {
                     },
                 },
             );
+            handleClear();
             console.log(response?.data);
         } catch (err) {}
+    };
+    const handleClear = () => {
+            dispatch(
+                clearCart({...cart})
+            );
     };
     return (
         <Container>
@@ -193,7 +200,7 @@ export const Cart = () => {
             <Wrapper>
                 <Title>Корзина</Title>
                 <Top>
-                    <TopButton>Продолжить шоппинг</TopButton>
+                    <TopButton><DeleteOutlineIcon onClick={handleClear}/></TopButton>
                     <TopTexts>
                         <TopText>Корзина(2)</TopText>
                         <TopText>Избранное (0)</TopText>
@@ -221,12 +228,10 @@ export const Cart = () => {
                                 </ProductDetail>
                                 <PriceDetail>
                                     <ProductAmountContainer>
-                                        <Add AddProd/>
-                                        <ProductAmount>{product.quantity}</ProductAmount>
-                                        <Remove/>
+                                        <ProductAmount>{product.quantity} шт.</ProductAmount>
                                     </ProductAmountContainer>
                                     <ProductPrice>
-                                        🪙  $ {product.price * product.quantity}
+                                        🪙  {product.price * product.quantity}
                                     </ProductPrice>
                                 </PriceDetail>
                             </Product>

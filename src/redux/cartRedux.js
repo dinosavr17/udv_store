@@ -14,7 +14,7 @@ const cartSlice = createSlice({
             state.total += action.payload.price * action.payload.quantity;
         },
         removeProduct: (state, action) => {
-            state.quantity -=action.payload.quantity;
+            state.quantity -= action.payload.quantity;
             // alert(action.payload.id);
             // let bug =state.products.map(product => product.quantity);
             // alert(bug);
@@ -22,19 +22,26 @@ const cartSlice = createSlice({
             state.total -= action.payload.price * action.payload.quantity;
             // state.products[0].quantity=state.products[0].quantity-action.payload.quantity;
             let ass;
-             (state.quantity===0)?state.products.pop(action.payload.products):alert('Удаляем не все продукты');
-            state.products.map((product, index) => {
-              console.log('Дошло', product.id === action.payload.id);
-                console.log('Количество',product.quantity)
-                console.log('Удаляем', action.payload.quantity)
-                ass =  (product.id === action.payload.id)? index: null;
-            }
-            )
-            state.products[ass].quantity=state.products[ass].quantity-action.payload.quantity;
+            if (state.quantity > 0) {
+                state.products.map((product, index) => {
+                        console.log('Дошло', product.id === action.payload.id);
+                        console.log('Количество', product.quantity)
+                        console.log('Удаляем', action.payload.quantity)
+                        ass = (product.id === action.payload.id) ? index : null;
+                    }
+                );
+                    state.products[ass].quantity = state.products[ass].quantity - action.payload.quantity;
+        }
+        },
+        clearCart: (state, action) => {
+            state.quantity = 0;
+            state.total = 0;
+            state.products = [];
         },
     },
 });
 
 export const { addProduct } = cartSlice.actions;
 export const { removeProduct } = cartSlice.actions;
+export const {clearCart} = cartSlice.actions;
 export default cartSlice.reducer;

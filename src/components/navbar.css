@@ -25,7 +25,6 @@
     transition: 850ms;
     z-index: 999;
 }
-
 .nav-menu.active {
     right: 0;
     transition: 350ms;
@@ -72,4 +71,9 @@ ul {
 }
 li {
     padding: 0.5em 0.5em;
+}
+#admPanel2 {
+    justify-content: center;
+    align-content: center;
+    list-style: none;
 }

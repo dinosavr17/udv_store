@@ -1,12 +1,8 @@
-import React, { useRef, useState, useEffect } from 'react';
-import useAuth from '../hooks/useAuth';
+import React, { useState, useEffect } from 'react';
 import './login.css';
 import axios from "../api/axios";
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import registerLogo from '../images/logotype.svg'
 import styled from "styled-components";
 import {mobile} from "../responsive";
-import {OrderDetails} from "./OrderDetails";
 const Container = styled.div`
   border-color: #222222;
   border-radius: 10px;
@@ -165,7 +161,7 @@ const BalanceIncrease = () => {
                                                    value={balance[user.uuid]||''}
                                                    name={user.uuid}
                                             />
-                                            <button onClick={(event)=>handleClick(event,user.uuid)} className="login_btn">Начислить</button>
+                                            <button onClick={(event)=>handleClick(event,user.uuid)} className="login_btn">Изменить баланс</button>
                                     </PriceDetail>
                                 </Order>
                             ))}

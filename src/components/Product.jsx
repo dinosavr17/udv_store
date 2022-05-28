@@ -76,7 +76,7 @@ const InfoContainer = styled.div`
   justify-items: center;
   align-items: center;
   max-height: 40%;
-  background-color: whitesmoke;
+ 
 `;
 const ImgContainer = styled.div`
  justify-items: center;
@@ -103,6 +103,8 @@ const Amount = styled.span`
 `;
 
 const Product = ({ item }) => {
+
+
     const [modalActive, setModalActive] = useState(false);
     const [product, setProduct] = useState({});
     const [quantity, setQuantity] = useState(0);
@@ -174,7 +176,6 @@ const Product = ({ item }) => {
                                 </Desc>
                                 <div>
                                     <Button onClick={handleAdd} className='custom-btn'>Купить</Button>
-                                    <Button onClick={handleRemove}>Удалить</Button>
                                 </div>
                             </InfoContainer>
                         </Wrapper>
