@@ -104,7 +104,7 @@ const ControlingOrders = () => {
 
     // console.log('Ага',userArray);
     const handleChange = async (event, id, status) => {
-        const response=await axios.get(
+        await axios.get(
             'http://localhost:3000/admin/orders',
             {
                 headers: {
@@ -116,12 +116,20 @@ const ControlingOrders = () => {
                 }
             }
         );
+        const response=await axios.get(
+            'http://localhost:3000/admin/orders',
+            {
+                headers: {
+                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                },
+            }
+        );
         setAdminOrders(response.data);
         console.log('изменение статуса заказа',response.data);
     }
 
     const handleRemove = async (event, id) => {
-        const response=await axios.get(
+        await axios.get(
             'http://localhost:3000/admin/orders',
             {
                 headers: {
@@ -130,6 +138,14 @@ const ControlingOrders = () => {
                 params: {
                     orderId: id,
                 }
+            }
+        );
+        const response=await axios.get(
+            'http://localhost:3000/admin/orders',
+            {
+                headers: {
+                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                },
             }
         );
         setAdminOrders(response.data);

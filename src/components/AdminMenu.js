@@ -18,7 +18,7 @@ const AdminMenu = () => {
             </NavLink>
                 <NavLink to='/'>
             <div className='adm-card2 adm-card'>
-                <div>ПОЛЬЗОВАТЕЛИ(ПОМЕНЯТЬ РУТ)</div>
+                <div>UDV Store</div>
                 <div><img className='adm-icons' src={shopImg}/></div>
             </div>
                 </NavLink>

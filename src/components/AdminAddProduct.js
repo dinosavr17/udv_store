@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import axios from "../api/axios";
 import {mobile} from "../responsive";
@@ -78,30 +78,25 @@ const OrderButton = styled.button`
 
 export const AdminAddProduct = () => {
     const [product, setProduct] = useState({});
-    var bodyFormData = new FormData();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+        let bodyFormData;
+        bodyFormData = new FormData();
        console.log(data.file[0]);
        data.file = data.file[0];
        console.log(data.name);
        console.log(data.price);
        console.log(data.amount);
-        let imageBlob = resolve => data.file.toBlob(resolve, 'image/png');
+        // let imageBlob = resolve => data.file.toBlob(resolve, 'image/png');
         bodyFormData.append('name', data.name);
         bodyFormData.append('price', data.price);
         bodyFormData.append('description', data.description);
         bodyFormData.append('amount', data.amount);
         bodyFormData.append('file', data.file);
-        bodyFormData.append("file", imageBlob, "image.png");
+        // bodyFormData.append("file", imageBlob, "image.png");
         for(let [name, value] of bodyFormData) {
             alert(`${name} = ${value}`); // key1=value1, потом key2=value2
         }
-    };
-    const OnChange = (e) =>{
-        const file = e.target.files[0];
-    }
-    console.log(errors);
-    const handleClick = async () => {
         try {
             console.log(bodyFormData);
             const response = await axios.post('http://localhost:3000/admin/product', bodyFormData,
@@ -116,13 +111,32 @@ export const AdminAddProduct = () => {
             console.log(response?.data);
         } catch (err) {}
     };
+    const OnChange = (e) =>{
+        const file = e.target.files[0];
+    }
+    console.log(errors);
+    // const handleClick = async () => {
+    //     try {
+    //         console.log(bodyFormData);
+    //         const response = await axios.post('http://localhost:3000/admin/product', bodyFormData,
+    //             {
+    //                 headers: {
+    //                     'Content-Type':  "multipart/form-data",
+    //                     'Access-Control-Allow-Origin': 'http://localhost:3000',
+    //                     'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+    //                 },
+    //             },
+    //         );
+    //         console.log(response?.data);
+    //     } catch (err) {}
+    // };
     return (
         <section className="login_section">
             <div className="card">
                 <Container>
                     <Wrapper>
                         <Title>
-                            <div>МИША БАЗАРНАЯ БАБКА:</div>
+                            <div>Добавить новый товар:</div>
                         </Title>
                         <Info>
                             <form onSubmit={handleSubmit(onSubmit)}>
@@ -134,7 +148,7 @@ export const AdminAddProduct = () => {
 
                                 <input type="submit" />
                             </form>
-                            <button onClick={handleClick}>Создать продукт</button>
+                            {/*<button onClick={handleClick}>Создать продукт</button>*/}
                         </Info>
                     </Wrapper>
                 </Container>

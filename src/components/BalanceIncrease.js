@@ -3,6 +3,9 @@ import './login.css';
 import axios from "../api/axios";
 import styled from "styled-components";
 import {mobile} from "../responsive";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faUserShield, faUserXmark} from "@fortawesome/free-solid-svg-icons";
+
 const Container = styled.div`
   border-color: #222222;
   border-radius: 10px;
@@ -129,6 +132,28 @@ const BalanceIncrease = () => {
             );
             console.log(response?.data);
         } catch (err) {}
+    }
+    const handleDelete = async (event,userId) => {
+        try {
+            await axios.delete(`http://localhost:3000/admin/${userId}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': 'http://localhost:3000',
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                    },
+                },
+            );
+        } catch (err) {}
+        const response=await axios.get(
+            'http://localhost:3000/admin/info',
+            {
+                headers: {
+                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                },
+            }
+        );
+        setUsers(response.data);
     };
     return (
         <section className="login_section">
@@ -162,6 +187,7 @@ const BalanceIncrease = () => {
                                                    name={user.uuid}
                                             />
                                             <button onClick={(event)=>handleClick(event,user.uuid)} className="login_btn">Изменить баланс</button>
+                                        <div><FontAwesomeIcon onClick={(event)=>handleDelete(event,user.uuid)} icon={faUserXmark}/></div>
                                     </PriceDetail>
                                 </Order>
                             ))}

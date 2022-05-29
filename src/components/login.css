@@ -7,7 +7,7 @@
             "login_card";
     justify-content: center;
     background-image: url("../images/back.png");
-    height: 100vh;
+    height: 500vh;
 }
 .register_logo {
     grid-area: register_logo;

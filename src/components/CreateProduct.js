@@ -107,7 +107,7 @@ const CreateProduct = () => {
                 <Container>
                     <Wrapper>
                         <Title>
-                            <div>МИША БАЗАРНАЯ БАБКА:</div>
+                            <div>Товары:</div>
                         </Title>
                         <Info>
                             <Order>

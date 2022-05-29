@@ -89,8 +89,9 @@ export const OrderHistory = () => {
         );
         setOrderRecords(response.data);
         console.log(response.data);
-    },[])
-
+        console.log(orderRecords);
+    },[orderRecords])
+    if (orderRecords==[]) {return(<Container><Title>История Заказов</Title></Container>)}
     return (
        <Container>
            <Wrapper>

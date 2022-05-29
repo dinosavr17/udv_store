@@ -29,12 +29,11 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 const Image = styled.img`
-  max-height: 60%;
+  max-height: 200px;
   max-width: 100%;
   &:hover {
     background-color: #e9f5f5;
     transform: scale(1.1);
-    max-height: 60%;
   }
 `;
 
