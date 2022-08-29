@@ -1,79 +1,81 @@
 import React, {useEffect, useState} from "react";
-import styled from "styled-components";
+import styled, {createGlobalStyle, css} from "styled-components";
 import axios from "../api/axios";
 import {mobile} from "../responsive";
 import './adminAdd.css'
+import AdmNavbar from "./AdmNavbar";
 import { useForm } from 'react-hook-form';
 
+const GlobalStyle = createGlobalStyle`
+  html {
+    height: 100%
+  }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    margin: 0;
+    color: #555;
+  }
+  label {
+    cursor: pointer;
+   color: #f7797d;
+  }
 
+  #upload-photo {
+    padding: 5px;
+    opacity: 25;
+    z-index: 1;
+  }
+`;
+const sharedStyles = css`
+  background-color: #eee;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin: 10px 0 20px 0;
+  padding: 20px;
+  box-sizing: border-box;
+`;
 const Container = styled.div`
   border-color: #222222;
   border-radius: 10px;
 `;
-const Wrapper = styled.div`
-  padding: 20px;
-  ${mobile({ padding: "10px" })}
-`;
-
 const Title = styled.h1`
   font-weight: 300;
   text-align: center;
 `;
 const Info = styled.div`
-  flex: 3;
-`;
-const Order = styled.div`
-  display: flex;
-  justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
-  background-color: lavender;
-  margin: 1em;
-  border-radius: 10px;
-`;
-const OrderDetail = styled.div`
-  flex: 2;
-  display: flex;
-`;
-
-const Details = styled.div`
-  padding: 20px;
-  display: flex;
+    display: flex;
   flex-direction: column;
-  justify-content: space-around;
-`;
-
-const CreationDate = styled.span``;
-
-const ProductId = styled.span``;
-
-const ProductSize = styled.span``;
-
-const PriceDetail = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ProductAmountContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-`;
-
-const ProductPrice = styled.div`
-  font-size: 30px;
-  font-weight: 200;
-  ${mobile({ marginBottom: "20px" })}
-`;
-
-const OrderButton = styled.button`
-  width: 100%;
   padding: 10px;
-  background-color: black;
-  color: white;
-  font-weight: 600;
+`;
+
+const StyledFormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  padding: 0 20px;
+`;
+
+const StyledForm = styled.form`
+  width: 100%;
+  max-width: 700px;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+`;
+const StyledInput = styled.input`
+  display: flex;
+  width: 100%;
+  ${sharedStyles}
+`;
+const Wrapper = styled.div`
+  padding: 20px;
+  ${mobile({ padding: "10px" })}
+  
 `;
 
 export const AdminAddProduct = () => {
@@ -87,16 +89,15 @@ export const AdminAddProduct = () => {
        console.log(data.name);
        console.log(data.price);
        console.log(data.amount);
-        // let imageBlob = resolve => data.file.toBlob(resolve, 'image/png');
         bodyFormData.append('name', data.name);
         bodyFormData.append('price', data.price);
         bodyFormData.append('description', data.description);
         bodyFormData.append('amount', data.amount);
         bodyFormData.append('file', data.file);
         // bodyFormData.append("file", imageBlob, "image.png");
-        for(let [name, value] of bodyFormData) {
-            alert(`${name} = ${value}`); // key1=value1, потом key2=value2
-        }
+        // for(let [name, value] of bodyFormData) {
+        //     alert(`${name} = ${value}`); // key1=value1, потом key2=value2
+        // }
         try {
             console.log(bodyFormData);
             const response = await axios.post('http://localhost:3000/admin/product', bodyFormData,
@@ -131,29 +132,33 @@ export const AdminAddProduct = () => {
     //     } catch (err) {}
     // };
     return (
-        <section className="login_section">
-            <div className="card">
-                <Container>
-                    <Wrapper>
-                        <Title>
-                            <div>Добавить новый товар:</div>
+                <Container className='order_section'>
+                    <AdmNavbar/>
+                    <>
+                        <GlobalStyle/>
+                    <Wrapper >
+                        <Title>Добавить новый товар:
                         </Title>
                         <Info>
-                            <form onSubmit={handleSubmit(onSubmit)}>
-                                <input type="text" placeholder="name" {...register("name", {required: true, maxLength: 80})} />
-                                <input type="text" placeholder="price" {...register("price", {required: true, maxLength: 100})} />
-                                <input type="text" placeholder="description" {...register("description", {required: true, maxLength: 1000})} />
-                                <input type="text" placeholder="amount" {...register("amount", {})} />
-                                <input type="file" placeholder="file" onChange={onchange} {...register("file", {})} />
+                            <StyledFormWrapper>
+                            <StyledForm  class="form-horizontal" onSubmit={handleSubmit(onSubmit)}>
+                                <div className="form-group">
 
-                                <input type="submit" />
-                            </form>
+                                <StyledInput type="text" placeholder="Название товара" {...register("name", {required: true, maxLength: 80})} />
+                                <StyledInput type="text" placeholder="Цена" {...register("price", {required: true, maxLength: 100})} />
+                                <StyledInput  type="text" placeholder="Описание" {...register("description", {required: true, maxLength: 1000})} />
+                                <StyledInput  type="text" placeholder="Количество" {...register("amount", {})} />
+                                <input type="file" placeholder="file" onChange={onchange} accept=".jpg,.jpeg,.png" {...register("file", {})} />
+
+                                <input className='custom-btn' type="submit" />
+                                </div>
+                            </StyledForm>
                             {/*<button onClick={handleClick}>Создать продукт</button>*/}
+                            </StyledFormWrapper>
                         </Info>
                     </Wrapper>
+                        </>
                 </Container>
-            </div>
-        </section>
     )
 
 }

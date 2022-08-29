@@ -1,4 +1,7 @@
-
+.order_section {
+    background-image: url("../images/back.png");
+    height: 500vh;
+}
 
 .login_section {
     display: grid;
@@ -117,6 +120,7 @@ label {
 .adm-card {
     background-color: #00d29d;
     border-radius: 10px;
+    padding: 1em;
 }
 .adm-card1 {
    grid-area: adm-card1;
@@ -135,4 +139,6 @@ label {
 }
 .adm-icons {
     max-width: 40%;
+    max-height: 40%;
+    margin: 1em;
 }

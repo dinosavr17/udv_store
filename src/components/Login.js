@@ -63,7 +63,7 @@ const Login = () => {
     }
 
     return (
-                <section className="login_section">
+                <section className="register_section">
                     <div className="register_logo">
                         <img className="registerLogo" src={registerLogo} alt='logo'/>
                     </div>

@@ -16,11 +16,10 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-weight: 300;
   text-align: center;
+  font-weight: normal;
 `;
 const Info = styled.div`
-  flex: 3;
 `;
 const Order = styled.div`
   display: flex;
@@ -29,9 +28,10 @@ const Order = styled.div`
   background-color: lavender;
   margin: 1em;
   border-radius: 10px;
+  max-height: 100%;
+  font-weight: normal;
 `;
 const OrderDetail = styled.div`
-  flex: 2;
   display: flex;
 `;
 
@@ -41,39 +41,17 @@ const Details = styled.div`
   flex-direction: column;
   justify-content: space-around;
 `;
-
-const CreationDate = styled.span``;
-
-const ProductId = styled.span``;
-
-const ProductSize = styled.span``;
-
-const PriceDetail = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+const ProductId = styled.span`
+    font-weight: normal;
 `;
 
-const ProductAmountContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-`;
-
-const ProductPrice = styled.div`
-  font-size: 30px;
-  font-weight: 200;
-  ${mobile({ marginBottom: "20px" })}
-`;
-
+const ProductSize = styled.span`
+font-weight: normal`;
 const OrderButton = styled.button`
   width: 100%;
   padding: 10px;
   background-color: black;
   color: white;
-  font-weight: 600;
 `;
 export const OrderDetails = ({item}) => {
     const [modalActive, setModalActive] = useState(false);

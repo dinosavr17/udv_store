@@ -5,6 +5,7 @@ import {mobile} from "../responsive";
 import './adminAdd.css'
 import { useForm } from 'react-hook-form';
 import Product from "./Product";
+import AdmNavbar from "./AdmNavbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTrashCan} from "@fortawesome/free-regular-svg-icons";
 
@@ -117,7 +118,8 @@ export const AdminRemoveProduct = () => {
         setProducts(response.data);
     };
     return (
-        <section className="login_section">
+        <section className="register_section">
+            <AdmNavbar/>
             <div className="card">
                 <Container>
                     <Wrapper>

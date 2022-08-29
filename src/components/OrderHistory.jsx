@@ -42,7 +42,9 @@ const Details = styled.div`
   justify-content: space-around;
 `;
 
-const CreationDate = styled.span``;
+const CreationDate = styled.span`
+`;
+
 
 const ProductId = styled.span``;
 
@@ -63,7 +65,7 @@ const ProductAmountContainer = styled.div`
 `;
 
 const ProductPrice = styled.div`
-  font-size: 30px;
+  font-size: 10px;
   font-weight: 200;
   ${mobile({ marginBottom: "20px" })}
 `;
@@ -90,7 +92,7 @@ export const OrderHistory = () => {
         setOrderRecords(response.data);
         console.log(response.data);
         console.log(orderRecords);
-    },[orderRecords])
+    },[])
     if (orderRecords==[]) {return(<Container><Title>История Заказов</Title></Container>)}
     return (
        <Container>

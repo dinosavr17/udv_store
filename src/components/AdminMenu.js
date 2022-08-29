@@ -1,9 +1,9 @@
 import './login.css';
 import {Link, useNavigate, useLocation, NavLink} from 'react-router-dom';
-import balanceImg from '../images/addCoinsIcon.png'
+import balanceImg from '../images/group.png'
 import shopImg from '../images/cartIcon.png'
 import productAdditionImg from '../images/addProdIcon.png'
-import messageIcon from '../images/messagesIcon.png'
+import messageIcon from '../images/box.png'
 
 const AdminMenu = () => {
 
@@ -30,12 +30,11 @@ const AdminMenu = () => {
                 </NavLink>
                 <NavLink to='/adm-balance'>
                 <div className='adm-card4 adm-card'>
-                    <div>Баланс</div>
+                    <div>Пользователи</div>
                     <div><img className='adm-icons' src={balanceImg}/></div>
                 </div>
                 </NavLink>
             </div>
-//Переименовать карточки, добавить удаление пользователей, ПОМЕНЯТЬ ИКОНКУ ДЛЯ ПОЛЬЗОВАТЕЛЕЙ И ЗАКАЗОВ
             </nav>
     )
 }
