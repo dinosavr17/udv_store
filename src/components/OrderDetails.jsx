@@ -59,15 +59,15 @@ export const OrderDetails = ({item}) => {
     useEffect(async ()=>{
         const response=await axios.get(`http://localhost:3000/user/order_records/${item.id}`)
         setOrderInfo(response.data);
-        console.log(response.data);
+        // console.log(response.data);
     },[item])
     return (
        <Container>
            <OrderButton onClick={() => setModalActive(true)}>Подробнее</OrderButton>
            <Modal active={modalActive} setActive={setModalActive}>
           <Info>
-              {orderInfo.map((orderExtra) => (
-                  <Order>
+              {orderInfo.map((orderExtra,i) => (
+                  <Order key={i}>
                       <Title>ID Заказа:{orderExtra.orderId}</Title>
                       <OrderDetail>
                           <Details>

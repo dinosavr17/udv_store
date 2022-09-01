@@ -36,16 +36,16 @@ const Navbar = () => {
                 },
             }
         );
-        console.log(response.data.userBalance);
+        // console.log(response.data.userBalance);
         setInfo(response.data);
-        console.log('РОЛЬ111',response.data.roleId)
+        // console.log('РОЛЬ111',response.data.roleId)
         setRole(response.data.roleId);
-        console.log(response.data);
-        console.log('РОЛЬ',role);
+        // console.log(response.data);
+        // console.log('РОЛЬ',role);
     },[role])
     const quantity = useSelector(state=>state.cart.quantity)
-    console.log(quantity)
-    console.log(info);
+    // console.log(quantity)
+    // console.log(info);
     useEffect(()=>{
         if (role == 2)
         {   document.getElementById('admPanel').style.display = 'flex';

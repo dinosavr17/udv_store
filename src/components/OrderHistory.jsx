@@ -90,9 +90,23 @@ export const OrderHistory = () => {
             }
         );
         setOrderRecords(response.data);
-        console.log(response.data);
-        console.log(orderRecords);
+        // console.log(response.data);
+        // console.log(orderRecords);
     },[])
+    const getDate = (date) => {
+        console.log('ДАТА С БЭКА', date);
+        let dateFormated = new Date(date);
+        console.log('ДАТА КАК ОБЪЕКТ', typeof dateFormated);
+        let dayFormated = dateFormated.getDate();
+        let monthFormated = dateFormated.getMonth();
+        let yearFormated = dateFormated.getFullYear();
+        let timeFormated = dateFormated.getHours()+':'+dateFormated.getMinutes();
+        console.log(dateFormated.getDate());
+        console.log(dayFormated +'.'+monthFormated+'.'+yearFormated);
+        console.log('Отформатированное время'+ timeFormated);
+        let finalDate = dayFormated +'.'+monthFormated+'.'+yearFormated + ' ' +timeFormated;
+        return finalDate
+    }
     if (orderRecords==[]) {return(<Container><Title>История Заказов</Title></Container>)}
     return (
        <Container>
@@ -107,7 +121,7 @@ export const OrderHistory = () => {
                                {/*<Image src={product.imageUrl} />*/}
                                <Details>
                                    <CreationDate key={shortid.generate()}>
-                                       <b>Дата Создания:</b> {order.creationDate}
+                                       <b>Дата Создания:</b> {getDate(order.creationDate)}
                                    </CreationDate>
                                    <ProductId key={shortid.generate()}>
                                        <b>ID:</b> {order.id}

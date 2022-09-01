@@ -127,6 +127,7 @@ const Product = ({ item }) => {
         dispatch(
             addProduct({...product, quantity })
         );
+        setModalActive(false);
     };
     const handleRemove = () => {
         if (quantity>0) {
@@ -151,7 +152,7 @@ const Product = ({ item }) => {
                         <Desc>{item.price}🪙</Desc>
                     </div>
                     <div>
-                        <Button className='custom-btn'>Купить</Button>
+                        <Button onClick={setModalActive} className='custom-btn'>Купить</Button>
                     </div>
                 </InfoContainer>
 

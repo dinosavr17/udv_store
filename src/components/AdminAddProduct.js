@@ -82,35 +82,38 @@ export const AdminAddProduct = () => {
     const [product, setProduct] = useState({});
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async (data) => {
-        let bodyFormData;
-        bodyFormData = new FormData();
-       console.log(data.file[0]);
-       data.file = data.file[0];
-       console.log(data.name);
-       console.log(data.price);
-       console.log(data.amount);
-        bodyFormData.append('name', data.name);
-        bodyFormData.append('price', data.price);
-        bodyFormData.append('description', data.description);
-        bodyFormData.append('amount', data.amount);
-        bodyFormData.append('file', data.file);
-        // bodyFormData.append("file", imageBlob, "image.png");
-        // for(let [name, value] of bodyFormData) {
-        //     alert(`${name} = ${value}`); // key1=value1, потом key2=value2
-        // }
-        try {
-            console.log(bodyFormData);
-            const response = await axios.post('http://localhost:3000/admin/product', bodyFormData,
-                {
-                    headers: {
-                        'Content-Type':  "multipart/form-data",
-                        'Access-Control-Allow-Origin': 'http://localhost:3000',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+        if (window.confirm('Вы уверены, что хотите добавить товар?')) {
+            let bodyFormData;
+            bodyFormData = new FormData();
+            // console.log(data.file[0]);
+            data.file = data.file[0];
+            // console.log(data.name);
+            // console.log(data.price);
+            // console.log(data.amount);
+            bodyFormData.append('name', data.name);
+            bodyFormData.append('price', data.price);
+            bodyFormData.append('description', data.description);
+            bodyFormData.append('amount', data.amount);
+            bodyFormData.append('file', data.file);
+            // bodyFormData.append("file", imageBlob, "image.png");
+            // for(let [name, value] of bodyFormData) {
+            //     alert(`${name} = ${value}`); // key1=value1, потом key2=value2
+            // }
+            try {
+                // console.log(bodyFormData);
+                const response = await axios.post('http://localhost:3000/admin/product', bodyFormData,
+                    {
+                        headers: {
+                            'Content-Type': "multipart/form-data",
+                            'Access-Control-Allow-Origin': 'http://localhost:3000',
+                            'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                        },
                     },
-                },
-            );
-            console.log(response?.data);
-        } catch (err) {}
+                );
+                console.log(response?.data);
+            } catch (err) {
+            }
+        }
     };
     const OnChange = (e) =>{
         const file = e.target.files[0];

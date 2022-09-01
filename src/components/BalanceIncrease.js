@@ -109,51 +109,57 @@ const BalanceIncrease = () => {
         return {[key]: users[key]};
     });
     console.log('Ага',userArray);
-    const handleClick = async (event, userId) => {
-        // setBalance({...balance, [event.target.name]:event.target.value})
-        console.log('лог',);
-        const preUserBalance = balance[userId];
-        console.log('Баланс', preUserBalance);
-        let userBalance = Number(preUserBalance);
-        let profile = {};
-        profile = {...id,userBalance};
-        console.log(profile);
-        try {
-            console.log(JSON.stringify(profile));
-            const response = await axios.post('http://localhost:3000/admin/user_balance',
-                JSON.stringify(profile),
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': 'http://localhost:3000',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+    const handleIncrease = async (event, userId) => {
+        if (window.confirm('Вы уверены, что хотите изменить баланс юзера?')) {
+            // setBalance({...balance, [event.target.name]:event.target.value})
+            console.log('лог',);
+            const preUserBalance = balance[userId];
+            console.log('Баланс', preUserBalance);
+            let userBalance = Number(preUserBalance);
+            let profile = {};
+            profile = {...id, userBalance};
+            console.log(profile);
+            try {
+                console.log(JSON.stringify(profile));
+                const response = await axios.post('http://localhost:3000/admin/user_balance',
+                    JSON.stringify(profile),
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': 'http://localhost:3000',
+                            'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                        },
                     },
-                },
-            );
-            console.log(response?.data);
-        } catch (err) {}
+                );
+                console.log(response?.data);
+            } catch (err) {
+            }
+        }
     }
     const handleDelete = async (event,userId) => {
-        try {
-            await axios.delete(`http://localhost:3000/admin/${userId}`,
+        if (window.confirm('Вы уверены, что хотите удалить юзера?')) {
+            try {
+                await axios.delete(`http://localhost:3000/admin/${userId}`,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': 'http://localhost:3000',
+                            'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                        },
+                    },
+                );
+            } catch (err) {
+            }
+            const response = await axios.get(
+                'http://localhost:3000/admin/info',
                 {
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': 'http://localhost:3000',
                         'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
                     },
-                },
+                }
             );
-        } catch (err) {}
-        const response=await axios.get(
-            'http://localhost:3000/admin/info',
-            {
-                headers: {
-                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
-                },
-            }
-        );
-        setUsers(response.data);
+            setUsers(response.data);
+        }
     };
     return (
         <section className="login_section">
@@ -186,7 +192,7 @@ const BalanceIncrease = () => {
                                                    value={balance[user.uuid]||''}
                                                    name={user.uuid}
                                             />
-                                            <button onClick={(event)=>handleClick(event,user.uuid)} className="login_btn">Изменить баланс</button>
+                                            <button onClick={(event)=>handleIncrease(event,user.uuid)} className="login_btn">Изменить баланс</button>
                                         <div><FontAwesomeIcon onClick={(event)=>handleDelete(event,user.uuid)} icon={faUserXmark}/></div>
                                     </PriceDetail>
                                 </Order>

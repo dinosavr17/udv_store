@@ -12,7 +12,6 @@ const Container = styled.div`
 
 const Products = ({ cat, filters, sort }) => {
     const [products, setProducts] = useState([]);
-    const [modalActive, setModalActive] = useState(false);
 
     useEffect(() => {
         const getProducts = async () => {
@@ -23,7 +22,7 @@ const Products = ({ cat, filters, sort }) => {
             } catch (err) {}
         };
         getProducts();
-    }, [cat]);
+    }, );
 
     /*useEffect(() => {
         cat &&

@@ -29,12 +29,12 @@ const AdmNavbar = () => {
                 },
             }
         );
-        console.log(response.data.userBalance);
+        // console.log(response.data.userBalance);
         setInfo(response.data);
-        console.log(response.data);
+        // console.log(response.data);
     },[])
     const quantity = useSelector(state=>state.cart.quantity)
-    console.log(quantity)
+    // console.log(quantity)
     return (
 
         <>

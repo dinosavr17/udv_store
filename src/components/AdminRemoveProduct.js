@@ -102,20 +102,23 @@ export const AdminRemoveProduct = () => {
             } catch (err) {}
     }, []);
     const handleDeleteProduct = async (event,id) => {
-        try {
-            await axios.delete(`http://localhost:3000/admin/product/${id}`,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': 'http://localhost:3000',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+        if (window.confirm('Вы уверены, что хотите удалить товар?')) {
+            try {
+                await axios.delete(`http://localhost:3000/admin/product/${id}`,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': 'http://localhost:3000',
+                            'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                        },
                     },
-                },
-            );
-        } catch (err) {}
-        const response = await axios.get('/products');
-        console.log(response.data)
-        setProducts(response.data);
+                );
+            } catch (err) {
+            }
+            const response = await axios.get('/products');
+            console.log(response.data)
+            setProducts(response.data);
+        }
     };
     return (
         <section className="register_section">

@@ -129,27 +129,30 @@ const ControlingOrders = () => {
     }
 
     const handleRemove = async (event, id) => {
-        await axios.get(
-            'http://localhost:3000/admin/orders',
-            {
-                headers: {
-                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
-                },
-                params: {
-                    orderId: id,
+        if (window.confirm('Вы уверены, что хотите удалить информацию о заказе'))
+        {
+            await axios.get(
+                'http://localhost:3000/admin/orders',
+                {
+                    headers: {
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                    },
+                    params: {
+                        orderId: id,
+                    }
                 }
-            }
-        );
-        const response=await axios.get(
-            'http://localhost:3000/admin/orders',
-            {
-                headers: {
-                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
-                },
-            }
-        );
-        setAdminOrders(response.data);
-        console.log('удаление заказа',response.data);
+            );
+            const response = await axios.get(
+                'http://localhost:3000/admin/orders',
+                {
+                    headers: {
+                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                    },
+                }
+            );
+            setAdminOrders(response.data);
+            console.log('удаление заказа', response.data);
+        }
     }
     // console.log('Ага',userArray);
     // const handleClick = async (event, userId) => {

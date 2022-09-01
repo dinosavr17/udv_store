@@ -173,26 +173,33 @@ export const Cart = () => {
     orderCreationDetails= order;
     console.log('массив', orderCreationDetails);
     const handleSubmit = async () => {
-        try {
-            console.log(JSON.stringify({orderCreationDetails}));
-            const response = await axios.post(ORDER_URL,
-                JSON.stringify( {orderCreationDetails} ),
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': 'http://localhost:3000',
-                        'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+        if (window.confirm('Вы действительно хотите закончить покупки?')) {
+            try {
+                console.log(JSON.stringify({orderCreationDetails}));
+                const response = await axios.post(ORDER_URL,
+                    JSON.stringify({orderCreationDetails}),
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': 'http://localhost:3000',
+                            'Authorization': `Bearer ${JSON.parse(localStorage.getItem("userData")).accessToken}`,
+                        },
                     },
-                },
-            );
-            handleClear();
-            console.log(response?.data);
-        } catch (err) {}
+                );
+                dispatch(
+                    clearCart({...cart})
+                );
+                console.log(response?.data);
+            } catch (err) {
+            }
+        }
     };
     const handleClear = () => {
+        if (window.confirm('Вы действительно хотите очистить корзину?')) {
             dispatch(
                 clearCart({...cart})
             );
+        }
     };
     return (
         <Container>
